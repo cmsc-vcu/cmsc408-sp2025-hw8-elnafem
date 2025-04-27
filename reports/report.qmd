@@ -63,10 +63,11 @@ LIMIT 22;
 run_sql_and_return_html(cnx, """
 SELECT *
 FROM world_bank_data.wdi_country
-WHERE country_name IN ('World', 'High income', 'Upper middle income', 'Lower middle income', 'Low income')
-  OR country_region = ''
-  OR country_income = '';
+WHERE `Short Name` IN ('World', 'High income', 'Upper middle income', 'Lower middle income', 'Low income')
+  OR `Region` = ''
+  OR `Income Group` = '';
 """)
+
 ```
 
 ## Task 4
@@ -79,10 +80,13 @@ execute_ddl(cnx, """
 CREATE TABLE wdi_country AS
 SELECT *
 FROM world_bank_data.wdi_country
-WHERE income_group IS NOT NULL
-AND region IS NOT NULL
-AND NOT (country_name IN ('World', 'High income', 'Upper middle income', 'Lower middle income', 'Low income'));
+WHERE NOT (
+    `Short Name` IN ('World', 'High income', 'Upper middle income', 'Lower middle income', 'Low income')
+    OR `Region` = ''
+    OR `Income Group` = ''
+);
 """)
+
 
 run_sql_and_return_html(cnx, """
 SELECT COUNT(*) AS "Number of Countries"
@@ -93,18 +97,20 @@ FROM wdi_country;
 ## Task 5
 ```{python}
 run_sql_and_return_html(cnx, """
-select count(*) as "2020 Country Count"
-from wdi_country
+SELECT COUNT(*) AS "Number of Countries"
+FROM wdi_country;
 """)
+
 ```
 
 ## Task 6
 ```{python}
 run_sql_and_return_html(cnx, """
-select distinct country_region
-from wdi_country
-order by country_region
+SELECT DISTINCT `Region`
+FROM wdi_country
+ORDER BY `Region`;
 """)
+
 ```
 
 ## Task 7
@@ -130,10 +136,11 @@ order by country_name
 ## Task 9
 ```{python}
 run_sql_and_return_html(cnx, """
-select country_region, country_code, country_name
-from wdi_country
-where lower(country_name) = 'qatar'
+SELECT `Region`, `Country Code`, `Short Name`
+FROM wdi_country
+WHERE LOWER(`Short Name`) = 'qatar';
 """)
+
 ```
 
 ## Task 10
