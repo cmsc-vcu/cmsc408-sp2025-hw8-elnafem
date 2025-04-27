@@ -3134,7 +3134,7 @@ vertical-align: -.125em;
 <p>GITHUB URL: <a href="https://github.com/cmsc-vcu/cmsc408-sp2025-hw8-elnafem" class="uri">https://github.com/cmsc-vcu/cmsc408-sp2025-hw8-elnafem</a></p>
 <section id="problem-background" class="level1">
 <h1>Problem Background</h1>
-<div id="bc2dcb00" class="cell" data-execution_count="1">
+<div id="52560b11" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> helpers <span class="im">import</span> create_database_engine, run_sql_and_return_df, run_sql_and_return_html, create_db_wrapper, execute_ddl_from_file, execute_ddl</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>config_map <span class="op">=</span> {</span>
@@ -3146,7 +3146,7 @@ vertical-align: -.125em;
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>cnx, config <span class="op">=</span> create_db_wrapper(config_map)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="1a37b4eb" class="cell" data-execution_count="2">
+<div id="9a5840e0" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">select table_schema, table_name, table_rows</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">from information_schema.tables</span></span>
@@ -3240,7 +3240,7 @@ Total Rows: 3, Total Columns: 3
 <h1>Exercises</h1>
 <section id="task-1" class="level2">
 <h2 class="anchored" data-anchor-id="task-1">Task 1</h2>
-<div id="ee63d87a" class="cell" data-execution_count="3">
+<div id="2bc58471" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT COUNT(*) AS &quot;Row Count&quot;</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">FROM world_bank_data.wdi_country;</span></span>
@@ -3283,7 +3283,7 @@ Total Rows: 1, Total Columns: 1
 </section>
 <section id="task-2" class="level2">
 <h2 class="anchored" data-anchor-id="task-2">Task 2</h2>
-<div id="57231ae0" class="cell" data-execution_count="4">
+<div id="20e18e01" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT *</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="st">FROM world_bank_data.wdi_country</span></span>
@@ -6260,14 +6260,13 @@ Total Rows: 22, Total Columns: 31
 <p>:::</p>
 <section id="task-3" class="level2">
 <h2 class="anchored" data-anchor-id="task-3">Task 3</h2>
-<div id="ba757acb" class="cell" data-execution_count="5">
+<div id="055f9c0d" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT *</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT `Short Name`</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="st">FROM world_bank_data.wdi_country</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE `Short Name` IN (&#39;World&#39;, &#39;High income&#39;, &#39;Upper middle income&#39;, &#39;Lower middle income&#39;, &#39;Low income&#39;)</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="st">  OR `Region` = &#39;&#39;</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="st">  OR `Income Group` = &#39;&#39;;</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE `Region` IS NULL OR `Income Group` IS NULL</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="st">   OR `Short Name` IN (&#39;World&#39;, &#39;High income&#39;, &#39;Upper middle income&#39;, &#39;Lower middle income&#39;, &#39;Low income&#39;);</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <table class="dataframe table table-sm table-striped small">
 
@@ -6276,127 +6275,7 @@ Total Rows: 22, Total Columns: 31
 <tr>
 
 <th>
-Country Code
-</th>
-
-<th>
 Short Name
-</th>
-
-<th>
-Table Name
-</th>
-
-<th>
-Long Name
-</th>
-
-<th>
-2-alpha code
-</th>
-
-<th>
-Currency Unit
-</th>
-
-<th>
-Special Notes
-</th>
-
-<th>
-Region
-</th>
-
-<th>
-Income Group
-</th>
-
-<th>
-WB-2 code
-</th>
-
-<th>
-National accounts base year
-</th>
-
-<th>
-National accounts reference year
-</th>
-
-<th>
-SNA price valuation
-</th>
-
-<th>
-Lending category
-</th>
-
-<th>
-Other groups
-</th>
-
-<th>
-System of National Accounts
-</th>
-
-<th>
-Alternative conversion factor
-</th>
-
-<th>
-PPP survey year
-</th>
-
-<th>
-Balance of Payments Manual in use
-</th>
-
-<th>
-External debt Reporting status
-</th>
-
-<th>
-System of trade
-</th>
-
-<th>
-Government Accounting concept
-</th>
-
-<th>
-IMF data dissemination standard
-</th>
-
-<th>
-Latest population census
-</th>
-
-<th>
-Latest household survey
-</th>
-
-<th>
-Source of most recent Income and expenditure data
-</th>
-
-<th>
-Vital registration complete
-</th>
-
-<th>
-Latest agricultural census
-</th>
-
-<th>
-Latest industrial data
-</th>
-
-<th>
-Latest trade data
-</th>
-
-<th>
-Latest water withdrawal data
 </th>
 
 </tr>
@@ -6408,127 +6287,119 @@ Latest water withdrawal data
 <tr>
 
 <td>
-HIC
+Africa Eastern and Southern
 </td>
+
+</tr>
+
+<tr>
+
+<td>
+Africa Western and Central
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Arab World
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Central Europe and the Baltics
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Caribbean small states
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+East Asia &amp; Pacific (excluding high income)
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Early-demographic dividend
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Europe &amp; Central Asia (excluding high income)
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Europe &amp; Central Asia
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Euro area
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+European Union
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Fragile and conflict affected situations
+</td>
+
+</tr>
+
+<tr>
 
 <td>
 High income
 </td>
 
-<td>
-High income
-</td>
+</tr>
+
+<tr>
 
 <td>
-High income
-</td>
-
-<td>
-XD
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-High income group aggregate. High-income economies are those in which 2023 Atlas GNI per capita was more than $14,005.
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-XD
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
+Heavily indebted poor countries (HIPC)
 </td>
 
 </tr>
@@ -6536,255 +6407,87 @@ NULL
 <tr>
 
 <td>
-LIC
+IBRD only
 </td>
+
+</tr>
+
+<tr>
+
+<td>
+IDA &amp; IBRD total
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+IDA total
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+IDA blend
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+IDA only
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Latin America &amp; Caribbean (excluding high income)
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Latin America &amp; Caribbean
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Least developed countries: UN classification
+</td>
+
+</tr>
+
+<tr>
 
 <td>
 Low income
 </td>
 
-<td>
-Low income
-</td>
-
-<td>
-Low income
-</td>
-
-<td>
-XM
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-Low income group aggregate. Low-income economies are those in which 2023 Atlas GNI per capita was $1,145 or less.
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-XM
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
 </tr>
 
 <tr>
-
-<td>
-LMC
-</td>
 
 <td>
 Lower middle income
 </td>
 
-<td>
-Lower middle income
-</td>
+</tr>
+
+<tr>
 
 <td>
-Lower middle income
-</td>
-
-<td>
-XN
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-Lower middle income group aggregate. Lower-middle-income economies are those in which Atlas 2023 GNI per capita was between $1,146 and $4,515.
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-XN
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
+Low &amp; middle income
 </td>
 
 </tr>
@@ -6792,127 +6495,7 @@ NULL
 <tr>
 
 <td>
-UMC
-</td>
-
-<td>
-Upper middle income
-</td>
-
-<td>
-Upper middle income
-</td>
-
-<td>
-Upper middle income
-</td>
-
-<td>
-XT
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-Upper middle income group aggregate. Upper-middle-income economies are those in which 2023 Atlas GNI per capita was between $4,516 and $14,005.
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-XT
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
+Late-demographic dividend
 </td>
 
 </tr>
@@ -6920,134 +6503,182 @@ NULL
 <tr>
 
 <td>
-WLD
-</td>
-
-<td>
-World
-</td>
-
-<td>
-World
-</td>
-
-<td>
-World
-</td>
-
-<td>
-1W
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-1W
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
-</td>
-
-<td>
-NULL
+Middle East &amp; North Africa
 </td>
 
 </tr>
 
 <tr>
-<td colspan="31" style="text-align: left;">
-Total Rows: 5, Total Columns: 31
+
+<td>
+Middle income
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Middle East &amp; North Africa (excluding high income)
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+North America
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+OECD members
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Other small states
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Pre-demographic dividend
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Pacific island small states
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Post-demographic dividend
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+South Asia
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Sub-Saharan Africa (excluding high income)
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Sub-Saharan Africa
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Small states
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+East Asia &amp; Pacific (IDA &amp; IBRD)
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Europe &amp; Central Asia (IDA &amp; IBRD)
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Latin America &amp; Caribbean (IDA &amp; IBRD)
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Middle East &amp; North Africa (IDA &amp; IBRD)
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+South Asia (IDA &amp; IBRD)
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Sub-Saharan Africa (IDA &amp; IBRD)
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Upper middle income
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Venezuela
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+World
+</td>
+
+</tr>
+
+<tr>
+<td colspan="1" style="text-align: left;">
+Total Rows: 49, Total Columns: 1
 </td>
 </tr>
 </tbody>
@@ -7058,7 +6689,7 @@ Total Rows: 5, Total Columns: 31
 </section>
 <section id="task-4" class="level2">
 <h2 class="anchored" data-anchor-id="task-4">Task 4</h2>
-<div id="0eff7623" class="cell" data-execution_count="6">
+<div id="2a67b85f" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>execute_ddl(cnx, <span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="st">DROP TABLE IF EXISTS wdi_country;</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span>
@@ -7067,18 +6698,16 @@ Total Rows: 5, Total Columns: 31
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="st">CREATE TABLE wdi_country AS</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT *</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="st">FROM world_bank_data.wdi_country</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE NOT (</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="st">    `Short Name` IN (&#39;World&#39;, &#39;High income&#39;, &#39;Upper middle income&#39;, &#39;Lower middle income&#39;, &#39;Low income&#39;)</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="st">    OR `Region` = &#39;&#39;</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="st">    OR `Income Group` = &#39;&#39;</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="st">);</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT COUNT(*) AS &quot;Number of Countries&quot;</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="st">FROM wdi_country;</span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE `Region` IS NOT NULL</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="st">AND `Income Group` IS NOT NULL</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="st">AND `Short Name` NOT IN (&#39;World&#39;, &#39;High income&#39;, &#39;Upper middle income&#39;, &#39;Lower middle income&#39;, &#39;Low income&#39;);</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT COUNT(*) AS &quot;Number of Countries&quot;</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="st">FROM wdi_country;</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <table class="dataframe table table-sm table-striped small">
 
@@ -7117,9 +6746,9 @@ Total Rows: 1, Total Columns: 1
 </section>
 <section id="task-5" class="level2">
 <h2 class="anchored" data-anchor-id="task-5">Task 5</h2>
-<div id="645771bc" class="cell" data-execution_count="7">
+<div id="d7218dd4" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT COUNT(*) AS &quot;Number of Countries&quot;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT COUNT(*) AS &quot;2020 Country Count&quot;</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="st">FROM wdi_country;</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
@@ -7130,7 +6759,7 @@ Total Rows: 1, Total Columns: 1
 <tr>
 
 <th>
-Number of Countries
+2020 Country Count
 </th>
 
 </tr>
@@ -7160,7 +6789,7 @@ Total Rows: 1, Total Columns: 1
 </section>
 <section id="task-6" class="level2">
 <h2 class="anchored" data-anchor-id="task-6">Task 6</h2>
-<div id="492b60dc" class="cell" data-execution_count="8">
+<div id="79159402" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT DISTINCT `Region`</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="st">FROM wdi_country</span></span>
@@ -7252,12 +6881,12 @@ Total Rows: 7, Total Columns: 1
 </section>
 <section id="task-7" class="level2">
 <h2 class="anchored" data-anchor-id="task-7">Task 7</h2>
-<div id="76ba4ec2" class="cell" data-execution_count="9">
+<div id="e78dcff6" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="st">select country_region as Region, count(*) as &quot;Country Count&quot;</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="st">from wdi_country</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="st">group by country_region</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="st">order by &quot;Country Count&quot; desc</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT `Region`, COUNT(*) AS &quot;Country Count&quot;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="st">FROM wdi_country</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="st">GROUP BY `Region`</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY &quot;Country Count&quot; DESC;</span></span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <table class="dataframe table table-sm table-striped small">
@@ -7267,11 +6896,11 @@ Total Rows: 7, Total Columns: 1
 <tr>
 
 <th>
-ErrorType
+Region
 </th>
 
 <th>
-ErrorMessage
+Country Count
 </th>
 
 </tr>
@@ -7283,18 +6912,90 @@ ErrorMessage
 <tr>
 
 <td>
-OperationalError
+Latin America &amp; Caribbean
 </td>
 
 <td>
-Operational Error: (pymysql.err.OperationalError) (1054, “Unknown column &#39;country_region&#39; in &#39;field list&#39;”)\n[SQL: \nselect country_region as Region, count(*) as “Country Count”\nfrom wdi_country\ngroup by country_region\norder by “Country Count” desc\n]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)
+41
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+South Asia
+</td>
+
+<td>
+8
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Sub-Saharan Africa
+</td>
+
+<td>
+48
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Europe &amp; Central Asia
+</td>
+
+<td>
+58
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Middle East &amp; North Africa
+</td>
+
+<td>
+21
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+37
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+North America
+</td>
+
+<td>
+3
 </td>
 
 </tr>
 
 <tr>
 <td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+Total Rows: 7, Total Columns: 2
 </td>
 </tr>
 </tbody>
@@ -7305,12 +7006,12 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-8" class="level2">
 <h2 class="anchored" data-anchor-id="task-8">Task 8</h2>
-<div id="f666059b" class="cell" data-execution_count="10">
+<div id="825544bc" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="st">select country_name, country_region</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="st">from wdi_country</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="st">where lower(country_region) = &#39;north america&#39;</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="st">order by country_name</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT `Short Name`, `Region`</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="st">FROM wdi_country</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE `Region` = &#39;North America&#39;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY `Short Name`;</span></span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <table class="dataframe table table-sm table-striped small">
@@ -7320,11 +7021,11 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
+Short Name
 </th>
 
 <th>
-ErrorMessage
+Region
 </th>
 
 </tr>
@@ -7336,18 +7037,42 @@ ErrorMessage
 <tr>
 
 <td>
-OperationalError
+Bermuda
 </td>
 
 <td>
-Operational Error: (pymysql.err.OperationalError) (1054, “Unknown column &#39;country_name&#39; in &#39;field list&#39;”)\n[SQL: \nselect country_name, country_region\nfrom wdi_country\nwhere lower(country_region) = &#39;north america&#39;\norder by country_name\n]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)
+North America
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Canada
+</td>
+
+<td>
+North America
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+United States
+</td>
+
+<td>
+North America
 </td>
 
 </tr>
 
 <tr>
 <td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+Total Rows: 3, Total Columns: 2
 </td>
 </tr>
 </tbody>
@@ -7358,7 +7083,7 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-9" class="level2">
 <h2 class="anchored" data-anchor-id="task-9">Task 9</h2>
-<div id="734b8fab" class="cell" data-execution_count="11">
+<div id="1f633739" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT `Region`, `Country Code`, `Short Name`</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="st">FROM wdi_country</span></span>
@@ -7418,12 +7143,12 @@ Total Rows: 1, Total Columns: 3
 </section>
 <section id="task-10" class="level2">
 <h2 class="anchored" data-anchor-id="task-10">Task 10</h2>
-<div id="883a07d0" class="cell" data-execution_count="12">
+<div id="2bb44812" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="st">select country_code, country_name, country_abbr, country_wb_abbr, country_region</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="st">from wdi_country</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="st">where country_abbr &lt;&gt; country_wb_abbr</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="st">order by country_name</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT `Country Code`, `Short Name`, `2-alpha code`, `WB-2 code`, `Region`</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="st">FROM wdi_country</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE `2-alpha code` &lt;&gt; `WB-2 code`</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY `Short Name`;</span></span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <table class="dataframe table table-sm table-striped small">
@@ -7433,11 +7158,23 @@ Total Rows: 1, Total Columns: 3
 <tr>
 
 <th>
-ErrorType
+Country Code
 </th>
 
 <th>
-ErrorMessage
+Short Name
+</th>
+
+<th>
+2-alpha code
+</th>
+
+<th>
+WB-2 code
+</th>
+
+<th>
+Region
 </th>
 
 </tr>
@@ -7449,18 +7186,126 @@ ErrorMessage
 <tr>
 
 <td>
-OperationalError
+COD
 </td>
 
 <td>
-Operational Error: (pymysql.err.OperationalError) (1054, “Unknown column &#39;country_code&#39; in &#39;field list&#39;”)\n[SQL: \nselect country_code, country_name, country_abbr, country_wb_abbr, country_region\nfrom wdi_country\nwhere country_abbr &lt;&gt; country_wb_abbr\norder by country_name\n]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Dem. Rep. Congo
+</td>
+
+<td>
+CD
+</td>
+
+<td>
+ZR
+</td>
+
+<td>
+Sub-Saharan Africa
 </td>
 
 </tr>
 
 <tr>
-<td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+
+<td>
+SRB
+</td>
+
+<td>
+Serbia
+</td>
+
+<td>
+RS
+</td>
+
+<td>
+YF
+</td>
+
+<td>
+Europe &amp; Central Asia
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+TLS
+</td>
+
+<td>
+Timor-Leste
+</td>
+
+<td>
+TL
+</td>
+
+<td>
+TP
+</td>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+PSE
+</td>
+
+<td>
+West Bank and Gaza
+</td>
+
+<td>
+PS
+</td>
+
+<td>
+GZ
+</td>
+
+<td>
+Middle East &amp; North Africa
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+YEM
+</td>
+
+<td>
+Yemen
+</td>
+
+<td>
+YE
+</td>
+
+<td>
+RY
+</td>
+
+<td>
+Middle East &amp; North Africa
+</td>
+
+</tr>
+
+<tr>
+<td colspan="5" style="text-align: left;">
+Total Rows: 5, Total Columns: 5
 </td>
 </tr>
 </tbody>
@@ -7471,12 +7316,12 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-11" class="level2">
 <h2 class="anchored" data-anchor-id="task-11">Task 11</h2>
-<div id="0b47fd1a" class="cell" data-execution_count="13">
+<div id="e683b211" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="st">select country_income, count(*) as num_countries</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="st">from wdi_country</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="st">group by country_income</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="st">order by num_countries desc</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT `Income Group`, COUNT(*) AS num_countries</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="st">FROM wdi_country</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="st">GROUP BY `Income Group`</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY num_countries DESC;</span></span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <table class="dataframe table table-sm table-striped small">
@@ -7486,11 +7331,11 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
+Income Group
 </th>
 
 <th>
-ErrorMessage
+num_countries
 </th>
 
 </tr>
@@ -7502,18 +7347,54 @@ ErrorMessage
 <tr>
 
 <td>
-OperationalError
+High income
 </td>
 
 <td>
-Operational Error: (pymysql.err.OperationalError) (1054, “Unknown column &#39;country_income&#39; in &#39;field list&#39;”)\n[SQL: \nselect country_income, count(*) as num_countries\nfrom wdi_country\ngroup by country_income\norder by num_countries desc\n]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)
+85
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+54
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+51
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Low income
+</td>
+
+<td>
+26
 </td>
 
 </tr>
 
 <tr>
 <td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+Total Rows: 4, Total Columns: 2
 </td>
 </tr>
 </tbody>
@@ -7524,12 +7405,12 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-12" class="level2">
 <h2 class="anchored" data-anchor-id="task-12">Task 12</h2>
-<div id="8315b674" class="cell" data-execution_count="14">
+<div id="ccd57b14" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="st">select country_name, country_code, country_region, country_income</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="st">from wdi_country</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="st">where country_income = &#39;&#39;</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="st">order by country_name</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT `Short Name`, `Country Code`, `Region`, `Income Group`</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="st">FROM wdi_country</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE `Income Group` IS NULL</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY `Short Name`;</span></span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <table class="dataframe table table-sm table-striped small">
@@ -7539,11 +7420,19 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
+Short Name
 </th>
 
 <th>
-ErrorMessage
+Country Code
+</th>
+
+<th>
+Region
+</th>
+
+<th>
+Income Group
 </th>
 
 </tr>
@@ -7555,18 +7444,23 @@ ErrorMessage
 <tr>
 
 <td>
-OperationalError
+no records returned
 </td>
 
 <td>
-Operational Error: (pymysql.err.OperationalError) (1054, “Unknown column &#39;country_name&#39; in &#39;field list&#39;”)\n[SQL: \nselect country_name, country_code, country_region, country_income\nfrom wdi_country\nwhere country_income = &#39;&#39;\norder by country_name\n]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)
+</td>
+
+<td>
+</td>
+
+<td>
 </td>
 
 </tr>
 
 <tr>
-<td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+<td colspan="4" style="text-align: left;">
+Total Rows: 1, Total Columns: 4
 </td>
 </tr>
 </tbody>
@@ -7577,17 +7471,18 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-13" class="level2">
 <h2 class="anchored" data-anchor-id="task-13">Task 13</h2>
-<div id="70324140" class="cell" data-execution_count="15">
+<div id="b03ca02b" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>execute_ddl(cnx, <span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="st">update wdi_country</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="st">set country_income = &#39;High income&#39;</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="st">where country_code = &#39;VEN&#39;;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="st">UPDATE wdi_country</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="st">SET `Income Group` = &#39;High income&#39;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE `Country Code` = &#39;VEN&#39;;</span></span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="st">select country_code, country_name, country_income</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="st">from wdi_country</span></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="st">where country_code = &#39;VEN&#39;</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT `Country Code`, `Short Name`, `Income Group`</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="st">FROM wdi_country</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE `Country Code` = &#39;VEN&#39;;</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <table class="dataframe table table-sm table-striped small">
 
@@ -7596,11 +7491,15 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
+Country Code
 </th>
 
 <th>
-ErrorMessage
+Short Name
+</th>
+
+<th>
+Income Group
 </th>
 
 </tr>
@@ -7612,18 +7511,20 @@ ErrorMessage
 <tr>
 
 <td>
-OperationalError
+no records returned
 </td>
 
 <td>
-Operational Error: (pymysql.err.OperationalError) (1054, “Unknown column &#39;country_code&#39; in &#39;field list&#39;”)\n[SQL: \nselect country_code, country_name, country_income\nfrom wdi_country\nwhere country_code = &#39;VEN&#39;\n]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)
+</td>
+
+<td>
 </td>
 
 </tr>
 
 <tr>
-<td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+<td colspan="3" style="text-align: left;">
+Total Rows: 1, Total Columns: 3
 </td>
 </tr>
 </tbody>
@@ -7634,12 +7535,12 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-14" class="level2">
 <h2 class="anchored" data-anchor-id="task-14">Task 14</h2>
-<div id="1792940c" class="cell" data-execution_count="16">
+<div id="076d6ae2" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="st">select country_region as Region, country_income as Income_Group, count(*) as Num_Countries</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="st">from wdi_country</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="st">group by country_region, country_income</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="st">order by country_region, country_income</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT `Region`, `Income Group`, COUNT(*) AS Num_Countries</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="st">FROM wdi_country</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="st">GROUP BY `Region`, `Income Group`</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY `Region`, `Income Group`;</span></span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <table class="dataframe table table-sm table-striped small">
@@ -7649,11 +7550,15 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
+Region
 </th>
 
 <th>
-ErrorMessage
+Income Group
+</th>
+
+<th>
+Num_Countries
 </th>
 
 </tr>
@@ -7665,18 +7570,358 @@ ErrorMessage
 <tr>
 
 <td>
-OperationalError
+East Asia &amp; Pacific
 </td>
 
 <td>
-Operational Error: (pymysql.err.OperationalError) (1054, “Unknown column &#39;country_region&#39; in &#39;field list&#39;”)\n[SQL: \nselect country_region as Region, country_income as Income_Group, count(*) as Num_Countries\nfrom wdi_country\ngroup by country_region, country_income\norder by country_region, country_income\n]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)
+High income
+</td>
+
+<td>
+15
 </td>
 
 </tr>
 
 <tr>
-<td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+Low income
+</td>
+
+<td>
+1
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+12
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+9
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Europe &amp; Central Asia
+</td>
+
+<td>
+High income
+</td>
+
+<td>
+40
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Europe &amp; Central Asia
+</td>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+3
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Europe &amp; Central Asia
+</td>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+15
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Latin America &amp; Caribbean
+</td>
+
+<td>
+High income
+</td>
+
+<td>
+18
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Latin America &amp; Caribbean
+</td>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+4
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Latin America &amp; Caribbean
+</td>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+19
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Middle East &amp; North Africa
+</td>
+
+<td>
+High income
+</td>
+
+<td>
+8
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Middle East &amp; North Africa
+</td>
+
+<td>
+Low income
+</td>
+
+<td>
+2
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Middle East &amp; North Africa
+</td>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+7
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Middle East &amp; North Africa
+</td>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+4
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+North America
+</td>
+
+<td>
+High income
+</td>
+
+<td>
+3
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+South Asia
+</td>
+
+<td>
+Low income
+</td>
+
+<td>
+1
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+South Asia
+</td>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+6
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+South Asia
+</td>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+1
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Sub-Saharan Africa
+</td>
+
+<td>
+High income
+</td>
+
+<td>
+1
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Sub-Saharan Africa
+</td>
+
+<td>
+Low income
+</td>
+
+<td>
+22
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Sub-Saharan Africa
+</td>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+19
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Sub-Saharan Africa
+</td>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+6
+</td>
+
+</tr>
+
+<tr>
+<td colspan="3" style="text-align: left;">
+Total Rows: 22, Total Columns: 3
 </td>
 </tr>
 </tbody>
@@ -7687,19 +7932,18 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-15" class="level2">
 <h2 class="anchored" data-anchor-id="task-15">Task 15</h2>
-<div id="17d2cf74" class="cell" data-execution_count="17">
+<div id="445a28b8" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="st">select country_region as Region,</span></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="st">  sum(case when country_income = &#39;High income&#39; then 1 else 0 end) as High_Income,</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="st">  sum(case when country_income = &#39;Upper middle income&#39; then 1 else 0 end) as Upper_Middle_Income,</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="st">  sum(case when country_income = &#39;Lower middle income&#39; then 1 else 0 end) as Lower_Middle_Income,</span></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="st">  sum(case when country_income = &#39;Low income&#39; then 1 else 0 end) as Low_Income,</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="st">  sum(case when country_income = &#39;&#39; then 1 else 0 end) as Other,</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="st">  count(*) as Total</span></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="st">from wdi_country</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="st">group by country_region</span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="st">order by country_region</span></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT `Region`,</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="st">  SUM(CASE WHEN `Income Group` = &#39;High income&#39; THEN 1 ELSE 0 END) AS High_Income,</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="st">  SUM(CASE WHEN `Income Group` = &#39;Upper middle income&#39; THEN 1 ELSE 0 END) AS Upper_Middle_Income,</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="st">  SUM(CASE WHEN `Income Group` = &#39;Lower middle income&#39; THEN 1 ELSE 0 END) AS Lower_Middle_Income,</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="st">  SUM(CASE WHEN `Income Group` = &#39;Low income&#39; THEN 1 ELSE 0 END) AS Low_Income,</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="st">  COUNT(*) AS Total</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="st">FROM wdi_country</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="st">GROUP BY `Region`</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY `Region`;</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <table class="dataframe table table-sm table-striped small">
 
@@ -7708,11 +7952,27 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
+Region
 </th>
 
 <th>
-ErrorMessage
+High_Income
+</th>
+
+<th>
+Upper_Middle_Income
+</th>
+
+<th>
+Lower_Middle_Income
+</th>
+
+<th>
+Low_Income
+</th>
+
+<th>
+Total
 </th>
 
 </tr>
@@ -7724,18 +7984,202 @@ ErrorMessage
 <tr>
 
 <td>
-OperationalError
+East Asia &amp; Pacific
 </td>
 
 <td>
-Operational Error: (pymysql.err.OperationalError) (1054, “Unknown column &#39;country_region&#39; in &#39;field list&#39;”)\n[SQL: \nselect country_region as Region,\n sum(case when country_income = &#39;High income&#39; then 1 else 0 end) as High_Income,\n sum(case when country_income = &#39;Upper middle income&#39; then 1 else 0 end) as Upper_Middle_Income,\n sum(case when country_income = &#39;Lower middle income&#39; then 1 else 0 end) as Lower_Middle_Income,\n sum(case when country_income = &#39;Low income&#39; then 1 else 0 end) as Low_Income,\n sum(case when country_income = &#39;&#39; then 1 else 0 end) as Other,\n count(*) as Total\nfrom wdi_country\ngroup by country_region\norder by country_region\n]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)
+15.0
+</td>
+
+<td>
+9.0
+</td>
+
+<td>
+12.0
+</td>
+
+<td>
+1.0
+</td>
+
+<td>
+37
 </td>
 
 </tr>
 
 <tr>
-<td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+
+<td>
+Europe &amp; Central Asia
+</td>
+
+<td>
+40.0
+</td>
+
+<td>
+15.0
+</td>
+
+<td>
+3.0
+</td>
+
+<td>
+0.0
+</td>
+
+<td>
+58
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Latin America &amp; Caribbean
+</td>
+
+<td>
+18.0
+</td>
+
+<td>
+19.0
+</td>
+
+<td>
+4.0
+</td>
+
+<td>
+0.0
+</td>
+
+<td>
+41
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Middle East &amp; North Africa
+</td>
+
+<td>
+8.0
+</td>
+
+<td>
+4.0
+</td>
+
+<td>
+7.0
+</td>
+
+<td>
+2.0
+</td>
+
+<td>
+21
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+North America
+</td>
+
+<td>
+3.0
+</td>
+
+<td>
+0.0
+</td>
+
+<td>
+0.0
+</td>
+
+<td>
+0.0
+</td>
+
+<td>
+3
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+South Asia
+</td>
+
+<td>
+0.0
+</td>
+
+<td>
+1.0
+</td>
+
+<td>
+6.0
+</td>
+
+<td>
+1.0
+</td>
+
+<td>
+8
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Sub-Saharan Africa
+</td>
+
+<td>
+1.0
+</td>
+
+<td>
+6.0
+</td>
+
+<td>
+19.0
+</td>
+
+<td>
+22.0
+</td>
+
+<td>
+48
+</td>
+
+</tr>
+
+<tr>
+<td colspan="6" style="text-align: left;">
+Total Rows: 7, Total Columns: 6
 </td>
 </tr>
 </tbody>
@@ -7746,14 +8190,14 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-16" class="level2">
 <h2 class="anchored" data-anchor-id="task-16">Task 16</h2>
-<div id="bba9e41e" class="cell" data-execution_count="18">
+<div id="d04df026" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="st">select count(*) as Low_Income_Count, country_region, country_income</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="st">from wdi_country</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="st">where country_income = &#39;Low income&#39;</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="st">group by country_region, country_income</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="st">order by Low_Income_Count desc</span></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="st">limit 1</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT COUNT(*) AS Low_Income_Count, `Region`</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="st">FROM wdi_country</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE `Income Group` = &#39;Low income&#39;</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="st">GROUP BY `Region`</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY Low_Income_Count DESC</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="st">LIMIT 1;</span></span>
 <span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <table class="dataframe table table-sm table-striped small">
@@ -7763,11 +8207,11 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
+Low_Income_Count
 </th>
 
 <th>
-ErrorMessage
+Region
 </th>
 
 </tr>
@@ -7779,11 +8223,11 @@ ErrorMessage
 <tr>
 
 <td>
-OperationalError
+22
 </td>
 
 <td>
-Operational Error: (pymysql.err.OperationalError) (1054, “Unknown column &#39;country_region&#39; in &#39;field list&#39;”)\n[SQL: \nselect count(*) as Low_Income_Count, country_region, country_income\nfrom wdi_country\nwhere country_income = &#39;Low income&#39;\ngroup by country_region, country_income\norder by Low_Income_Count desc\nlimit 1\n]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Sub-Saharan Africa
 </td>
 
 </tr>
@@ -7801,17 +8245,22 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-17" class="level2">
 <h2 class="anchored" data-anchor-id="task-17">Task 17</h2>
-<div id="78751d19" class="cell" data-execution_count="19">
+<div id="fdc6da47" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="st">select country_code, country_name, country_region, country_income</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="st">from wdi_country</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="st">where country_region = (</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="st">    select country_region from wdi_country where country_code = &#39;MHL&#39;</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="st">) and country_income = (</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="st">    select country_income from wdi_country where country_code = &#39;MHL&#39;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT `Country Code`, `Short Name`, `Region`, `Income Group`</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="st">FROM wdi_country</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE `Region` = (</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT `Region`</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM wdi_country</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE `Country Code` = &#39;MHL&#39;</span></span>
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="st">)</span></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="st">order by country_name</span></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="st">AND `Income Group` = (</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="st">  SELECT `Income Group`</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="st">  FROM wdi_country</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="st">  WHERE `Country Code` = &#39;MHL&#39;</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="st">)</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY `Short Name`;</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <table class="dataframe table table-sm table-striped small">
 
@@ -7820,11 +8269,19 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
+Country Code
 </th>
 
 <th>
-ErrorMessage
+Short Name
+</th>
+
+<th>
+Region
+</th>
+
+<th>
+Income Group
 </th>
 
 </tr>
@@ -7836,18 +8293,186 @@ ErrorMessage
 <tr>
 
 <td>
-OperationalError
+CHN
 </td>
 
 <td>
-Operational Error: (pymysql.err.OperationalError) (1054, “Unknown column &#39;country_code&#39; in &#39;field list&#39;”)\n[SQL: \nselect country_code, country_name, country_region, country_income\nfrom wdi_country\nwhere country_region = (\n select country_region from wdi_country where country_code = &#39;MHL&#39;\n) and country_income = (\n select country_income from wdi_country where country_code = &#39;MHL&#39;\n)\norder by country_name\n]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)
+China
+</td>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+Upper middle income
 </td>
 
 </tr>
 
 <tr>
-<td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+
+<td>
+FJI
+</td>
+
+<td>
+Fiji
+</td>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+Upper middle income
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+IDN
+</td>
+
+<td>
+Indonesia
+</td>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+Upper middle income
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+MYS
+</td>
+
+<td>
+Malaysia
+</td>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+Upper middle income
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+MHL
+</td>
+
+<td>
+Marshall Islands
+</td>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+Upper middle income
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+MNG
+</td>
+
+<td>
+Mongolia
+</td>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+Upper middle income
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+THA
+</td>
+
+<td>
+Thailand
+</td>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+Upper middle income
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+TON
+</td>
+
+<td>
+Tonga
+</td>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+Upper middle income
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+TUV
+</td>
+
+<td>
+Tuvalu
+</td>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+Upper middle income
+</td>
+
+</tr>
+
+<tr>
+<td colspan="4" style="text-align: left;">
+Total Rows: 9, Total Columns: 4
 </td>
 </tr>
 </tbody>
@@ -7858,17 +8483,16 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-18" class="level2">
 <h2 class="anchored" data-anchor-id="task-18">Task 18</h2>
-<div id="6b1022a0" class="cell" data-execution_count="20">
+<div id="fc6488ea" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="st">select r.region, i.income, count(w.country_name) as num_countries</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="st">from (select distinct country_region as region from wdi_country) r</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="st">cross join (select distinct country_income as income from wdi_country) i</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="st">left join wdi_country w</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="st">on r.region = w.country_region and i.income = w.country_income</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="st">group by r.region, i.income</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="st">having num_countries = 0</span></span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="st">order by r.region, i.income</span></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT r.Region, i.Income, COUNT(w.`Short Name`) AS num_countries</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="st">FROM (SELECT DISTINCT `Region` FROM wdi_country) r</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="st">CROSS JOIN (SELECT DISTINCT `Income Group` AS Income FROM wdi_country) i</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="st">LEFT JOIN wdi_country w ON r.Region = w.`Region` AND i.Income = w.`Income Group`</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="st">GROUP BY r.Region, i.Income</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="st">HAVING num_countries = 0</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY r.Region, i.Income;</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <table class="dataframe table table-sm table-striped small">
 
@@ -7877,11 +8501,15 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
+Region
 </th>
 
 <th>
-ErrorMessage
+Income
+</th>
+
+<th>
+num_countries
 </th>
 
 </tr>
@@ -7893,18 +8521,102 @@ ErrorMessage
 <tr>
 
 <td>
-OperationalError
+Europe &amp; Central Asia
 </td>
 
 <td>
-Operational Error: (pymysql.err.OperationalError) (1054, “Unknown column &#39;country_region&#39; in &#39;field list&#39;”)\n[SQL: \nselect r.region, i.income, count(w.country_name) as num_countries\nfrom (select distinct country_region as region from wdi_country) r\ncross join (select distinct country_income as income from wdi_country) i\nleft join wdi_country w\non r.region = w.country_region and i.income = w.country_income\ngroup by r.region, i.income\nhaving num_countries = 0\norder by r.region, i.income\n]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)
+Low income
+</td>
+
+<td>
+0
 </td>
 
 </tr>
 
 <tr>
-<td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+
+<td>
+Latin America &amp; Caribbean
+</td>
+
+<td>
+Low income
+</td>
+
+<td>
+0
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+North America
+</td>
+
+<td>
+Low income
+</td>
+
+<td>
+0
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+North America
+</td>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+0
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+North America
+</td>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+0
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+South Asia
+</td>
+
+<td>
+High income
+</td>
+
+<td>
+0
+</td>
+
+</tr>
+
+<tr>
+<td colspan="3" style="text-align: left;">
+Total Rows: 6, Total Columns: 3
 </td>
 </tr>
 </tbody>
@@ -7915,17 +8627,17 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-19" class="level2">
 <h2 class="anchored" data-anchor-id="task-19">Task 19</h2>
-<div id="4a2baac4" class="cell" data-execution_count="21">
+<div id="ff912c80" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="st">select country_region as Region, country_income as Income_Group,</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="st">  count(*) as Country_Count,</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="st">  (select count(*) from wdi_country where country_region = w.country_region) as Region_Total,</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="st">  (select count(*) from wdi_country where country_income = w.country_income) as Income_Total,</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="st">  (select count(*) from wdi_country) as Global_Total,</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="st">  round(100 * count(*) / (select count(*) from wdi_country), 2) as Percent_of_Total</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="st">from wdi_country w</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="st">group by country_region, country_income</span></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="st">order by Percent_of_Total desc</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT `Region`, `Income Group`,</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="st">  COUNT(*) AS Country_Count,</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="st">  (SELECT COUNT(*) FROM wdi_country WHERE `Region` = w.`Region`) AS Region_Total,</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="st">  (SELECT COUNT(*) FROM wdi_country WHERE `Income Group` = w.`Income Group`) AS Income_Total,</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="st">  (SELECT COUNT(*) FROM wdi_country) AS Global_Total,</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="st">  ROUND(100 * COUNT(*) / (SELECT COUNT(*) FROM wdi_country), 2) AS Percent_of_Total</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="st">FROM wdi_country w</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="st">GROUP BY `Region`, `Income Group`</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY Percent_of_Total DESC;</span></span>
 <span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 <table class="dataframe table table-sm table-striped small">
@@ -7935,11 +8647,31 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
+Region
 </th>
 
 <th>
-ErrorMessage
+Income Group
+</th>
+
+<th>
+Country_Count
+</th>
+
+<th>
+Region_Total
+</th>
+
+<th>
+Income_Total
+</th>
+
+<th>
+Global_Total
+</th>
+
+<th>
+Percent_of_Total
 </th>
 
 </tr>
@@ -7951,18 +8683,710 @@ ErrorMessage
 <tr>
 
 <td>
-OperationalError
+Europe &amp; Central Asia
 </td>
 
 <td>
-Operational Error: (pymysql.err.OperationalError) (1054, “Unknown column &#39;country_region&#39; in &#39;field list&#39;”)\n[SQL: \nselect country_region as Region, country_income as Income_Group,\n count(<em>) as Country_Count,\n (select count(</em>) from wdi_country where country_region = w.country_region) as Region_Total,\n (select count(<em>) from wdi_country where country_income = w.country_income) as Income_Total,\n (select count(</em>) from wdi_country) as Global_Total,\n round(100 * count(<em>) / (select count(</em>) from wdi_country), 2) as Percent_of_Total\nfrom wdi_country w\ngroup by country_region, country_income\norder by Percent_of_Total desc\n]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)
+High income
+</td>
+
+<td>
+40
+</td>
+
+<td>
+58
+</td>
+
+<td>
+85
+</td>
+
+<td>
+216
+</td>
+
+<td>
+18.52
 </td>
 
 </tr>
 
 <tr>
-<td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+
+<td>
+Sub-Saharan Africa
+</td>
+
+<td>
+Low income
+</td>
+
+<td>
+22
+</td>
+
+<td>
+48
+</td>
+
+<td>
+26
+</td>
+
+<td>
+216
+</td>
+
+<td>
+10.19
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Sub-Saharan Africa
+</td>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+19
+</td>
+
+<td>
+48
+</td>
+
+<td>
+51
+</td>
+
+<td>
+216
+</td>
+
+<td>
+8.80
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Latin America &amp; Caribbean
+</td>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+19
+</td>
+
+<td>
+41
+</td>
+
+<td>
+54
+</td>
+
+<td>
+216
+</td>
+
+<td>
+8.80
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Latin America &amp; Caribbean
+</td>
+
+<td>
+High income
+</td>
+
+<td>
+18
+</td>
+
+<td>
+41
+</td>
+
+<td>
+85
+</td>
+
+<td>
+216
+</td>
+
+<td>
+8.33
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Europe &amp; Central Asia
+</td>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+15
+</td>
+
+<td>
+58
+</td>
+
+<td>
+54
+</td>
+
+<td>
+216
+</td>
+
+<td>
+6.94
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+High income
+</td>
+
+<td>
+15
+</td>
+
+<td>
+37
+</td>
+
+<td>
+85
+</td>
+
+<td>
+216
+</td>
+
+<td>
+6.94
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+12
+</td>
+
+<td>
+37
+</td>
+
+<td>
+51
+</td>
+
+<td>
+216
+</td>
+
+<td>
+5.56
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+9
+</td>
+
+<td>
+37
+</td>
+
+<td>
+54
+</td>
+
+<td>
+216
+</td>
+
+<td>
+4.17
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Middle East &amp; North Africa
+</td>
+
+<td>
+High income
+</td>
+
+<td>
+8
+</td>
+
+<td>
+21
+</td>
+
+<td>
+85
+</td>
+
+<td>
+216
+</td>
+
+<td>
+3.70
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Middle East &amp; North Africa
+</td>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+7
+</td>
+
+<td>
+21
+</td>
+
+<td>
+51
+</td>
+
+<td>
+216
+</td>
+
+<td>
+3.24
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+South Asia
+</td>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+6
+</td>
+
+<td>
+8
+</td>
+
+<td>
+51
+</td>
+
+<td>
+216
+</td>
+
+<td>
+2.78
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Sub-Saharan Africa
+</td>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+6
+</td>
+
+<td>
+48
+</td>
+
+<td>
+54
+</td>
+
+<td>
+216
+</td>
+
+<td>
+2.78
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Latin America &amp; Caribbean
+</td>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+4
+</td>
+
+<td>
+41
+</td>
+
+<td>
+51
+</td>
+
+<td>
+216
+</td>
+
+<td>
+1.85
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Middle East &amp; North Africa
+</td>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+4
+</td>
+
+<td>
+21
+</td>
+
+<td>
+54
+</td>
+
+<td>
+216
+</td>
+
+<td>
+1.85
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+North America
+</td>
+
+<td>
+High income
+</td>
+
+<td>
+3
+</td>
+
+<td>
+3
+</td>
+
+<td>
+85
+</td>
+
+<td>
+216
+</td>
+
+<td>
+1.39
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Europe &amp; Central Asia
+</td>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+3
+</td>
+
+<td>
+58
+</td>
+
+<td>
+51
+</td>
+
+<td>
+216
+</td>
+
+<td>
+1.39
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Middle East &amp; North Africa
+</td>
+
+<td>
+Low income
+</td>
+
+<td>
+2
+</td>
+
+<td>
+21
+</td>
+
+<td>
+26
+</td>
+
+<td>
+216
+</td>
+
+<td>
+0.93
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+South Asia
+</td>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+1
+</td>
+
+<td>
+8
+</td>
+
+<td>
+54
+</td>
+
+<td>
+216
+</td>
+
+<td>
+0.46
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+East Asia &amp; Pacific
+</td>
+
+<td>
+Low income
+</td>
+
+<td>
+1
+</td>
+
+<td>
+37
+</td>
+
+<td>
+26
+</td>
+
+<td>
+216
+</td>
+
+<td>
+0.46
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Sub-Saharan Africa
+</td>
+
+<td>
+High income
+</td>
+
+<td>
+1
+</td>
+
+<td>
+48
+</td>
+
+<td>
+85
+</td>
+
+<td>
+216
+</td>
+
+<td>
+0.46
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+South Asia
+</td>
+
+<td>
+Low income
+</td>
+
+<td>
+1
+</td>
+
+<td>
+8
+</td>
+
+<td>
+26
+</td>
+
+<td>
+216
+</td>
+
+<td>
+0.46
+</td>
+
+</tr>
+
+<tr>
+<td colspan="7" style="text-align: left;">
+Total Rows: 22, Total Columns: 7
 </td>
 </tr>
 </tbody>
@@ -7973,18 +9397,17 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-20" class="level2">
 <h2 class="anchored" data-anchor-id="task-20">Task 20</h2>
-<div id="b4a7dfba" class="cell" data-execution_count="22">
+<div id="5fa9486f" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="st">select country_region,</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="st">  round(100 * sum(case when country_income = &#39;High income&#39; then 1 else 0 end) / count(*), 2) as High_income_pct,</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="st">  round(100 * sum(case when country_income = &#39;Upper middle income&#39; then 1 else 0 end) / count(*), 2) as Upper_middle_pct,</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="st">  round(100 * sum(case when country_income = &#39;Lower middle income&#39; then 1 else 0 end) / count(*), 2) as Lower_middle_pct,</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="st">  round(100 * sum(case when country_income = &#39;Low income&#39; then 1 else 0 end) / count(*), 2) as Low_income_pct,</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="st">  round(100 * sum(case when country_income = &#39;&#39; then 1 else 0 end) / count(*), 2) as Other_pct</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="st">from wdi_country</span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="st">group by country_region</span></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="st">order by country_region</span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT `Region`,</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="st">  ROUND(100 * SUM(CASE WHEN `Income Group` = &#39;High income&#39; THEN 1 ELSE 0 END) / COUNT(*), 2) AS High_income_pct,</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="st">  ROUND(100 * SUM(CASE WHEN `Income Group` = &#39;Upper middle income&#39; THEN 1 ELSE 0 END) / COUNT(*), 2) AS Upper_middle_pct,</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="st">  ROUND(100 * SUM(CASE WHEN `Income Group` = &#39;Lower middle income&#39; THEN 1 ELSE 0 END) / COUNT(*), 2) AS Lower_middle_pct,</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="st">  ROUND(100 * SUM(CASE WHEN `Income Group` = &#39;Low income&#39; THEN 1 ELSE 0 END) / COUNT(*), 2) AS Low_income_pct</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="st">FROM wdi_country</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="st">GROUP BY `Region`</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY `Region`;</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
 <table class="dataframe table table-sm table-striped small">
 
@@ -7993,11 +9416,23 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
+Region
 </th>
 
 <th>
-ErrorMessage
+High_income_pct
+</th>
+
+<th>
+Upper_middle_pct
+</th>
+
+<th>
+Lower_middle_pct
+</th>
+
+<th>
+Low_income_pct
 </th>
 
 </tr>
@@ -8009,18 +9444,174 @@ ErrorMessage
 <tr>
 
 <td>
-OperationalError
+East Asia &amp; Pacific
 </td>
 
 <td>
-Operational Error: (pymysql.err.OperationalError) (1054, “Unknown column &#39;country_region&#39; in &#39;field list&#39;”)\n[SQL: \nselect country_region,\n round(100 * sum(case when country_income = &#39;High income&#39; then 1 else 0 end) / count(<em>), 2) as High_income_pct,\n round(100 </em> sum(case when country_income = &#39;Upper middle income&#39; then 1 else 0 end) / count(<em>), 2) as Upper_middle_pct,\n round(100 </em> sum(case when country_income = &#39;Lower middle income&#39; then 1 else 0 end) / count(<em>), 2) as Lower_middle_pct,\n round(100 </em> sum(case when country_income = &#39;Low income&#39; then 1 else 0 end) / count(<em>), 2) as Low_income_pct,\n round(100 </em> sum(case when country_income = &#39;&#39; then 1 else 0 end) / count(*), 2) as Other_pct\nfrom wdi_country\ngroup by country_region\norder by country_region\n]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)
+40.54
+</td>
+
+<td>
+24.32
+</td>
+
+<td>
+32.43
+</td>
+
+<td>
+2.70
 </td>
 
 </tr>
 
 <tr>
-<td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+
+<td>
+Europe &amp; Central Asia
+</td>
+
+<td>
+68.97
+</td>
+
+<td>
+25.86
+</td>
+
+<td>
+5.17
+</td>
+
+<td>
+0.00
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Latin America &amp; Caribbean
+</td>
+
+<td>
+43.90
+</td>
+
+<td>
+46.34
+</td>
+
+<td>
+9.76
+</td>
+
+<td>
+0.00
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Middle East &amp; North Africa
+</td>
+
+<td>
+38.10
+</td>
+
+<td>
+19.05
+</td>
+
+<td>
+33.33
+</td>
+
+<td>
+9.52
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+North America
+</td>
+
+<td>
+100.00
+</td>
+
+<td>
+0.00
+</td>
+
+<td>
+0.00
+</td>
+
+<td>
+0.00
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+South Asia
+</td>
+
+<td>
+0.00
+</td>
+
+<td>
+12.50
+</td>
+
+<td>
+75.00
+</td>
+
+<td>
+12.50
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Sub-Saharan Africa
+</td>
+
+<td>
+2.08
+</td>
+
+<td>
+12.50
+</td>
+
+<td>
+39.58
+</td>
+
+<td>
+45.83
+</td>
+
+</tr>
+
+<tr>
+<td colspan="5" style="text-align: left;">
+Total Rows: 7, Total Columns: 5
 </td>
 </tr>
 </tbody>
@@ -8031,15 +9622,15 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-21" class="level2">
 <h2 class="anchored" data-anchor-id="task-21">Task 21</h2>
-<div id="6ba70b0e" class="cell" data-execution_count="23">
+<div id="47e790a7" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="st">select country_income as Income_Group,</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="st">  count(*) as Country_Count,</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="st">  (select count(*) from wdi_country) as Global_Total,</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="st">  round(100 * count(*) / (select count(*) from wdi_country), 2) as Percent_Global</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="st">from wdi_country</span></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="st">group by country_income</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="st">order by Country_Count desc</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT `Income Group` AS Income_Group,</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="st">  COUNT(*) AS Country_Count,</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="st">  (SELECT COUNT(*) FROM wdi_country) AS Global_Total,</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="st">  ROUND(100 * COUNT(*) / (SELECT COUNT(*) FROM wdi_country), 2) AS Percent_Global</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="st">FROM wdi_country</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="st">GROUP BY `Income Group`</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY Country_Count DESC;</span></span>
 <span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="23">
 <table class="dataframe table table-sm table-striped small">
@@ -8049,11 +9640,19 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
+Income_Group
 </th>
 
 <th>
-ErrorMessage
+Country_Count
+</th>
+
+<th>
+Global_Total
+</th>
+
+<th>
+Percent_Global
 </th>
 
 </tr>
@@ -8065,18 +9664,86 @@ ErrorMessage
 <tr>
 
 <td>
-OperationalError
+High income
 </td>
 
 <td>
-Operational Error: (pymysql.err.OperationalError) (1054, “Unknown column &#39;country_income&#39; in &#39;field list&#39;”)\n[SQL: \nselect country_income as Income_Group,\n count(<em>) as Country_Count,\n (select count(</em>) from wdi_country) as Global_Total,\n round(100 * count(<em>) / (select count(</em>) from wdi_country), 2) as Percent_Global\nfrom wdi_country\ngroup by country_income\norder by Country_Count desc\n]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)
+85
+</td>
+
+<td>
+216
+</td>
+
+<td>
+39.35
 </td>
 
 </tr>
 
 <tr>
-<td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+
+<td>
+Upper middle income
+</td>
+
+<td>
+54
+</td>
+
+<td>
+216
+</td>
+
+<td>
+25.00
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+51
+</td>
+
+<td>
+216
+</td>
+
+<td>
+23.61
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Low income
+</td>
+
+<td>
+26
+</td>
+
+<td>
+216
+</td>
+
+<td>
+12.04
+</td>
+
+</tr>
+
+<tr>
+<td colspan="4" style="text-align: left;">
+Total Rows: 4, Total Columns: 4
 </td>
 </tr>
 </tbody>
