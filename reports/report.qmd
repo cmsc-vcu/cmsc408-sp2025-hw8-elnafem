@@ -63,32 +63,34 @@ LIMIT 22;
 run_sql_and_return_html(cnx, """
 SELECT `Short Name`
 FROM world_bank_data.wdi_country
-WHERE `Region` IS NULL OR `Income Group` IS NULL
-   OR `Short Name` IN ('World', 'High income', 'Upper middle income', 'Lower middle income', 'Low income');
+WHERE `Region` = '' OR `Income Group` = '';
 """)
 
 ```
 
 ## Task 4
 ```{python}
+## Drop the old table if it exists
 execute_ddl(cnx, """
 DROP TABLE IF EXISTS wdi_country;
 """)
 
+## Create the new clean country-only table
 execute_ddl(cnx, """
 CREATE TABLE wdi_country AS
 SELECT *
 FROM world_bank_data.wdi_country
-WHERE `Region` IS NOT NULL
-AND `Income Group` IS NOT NULL
-AND `Short Name` NOT IN ('World', 'High income', 'Upper middle income', 'Lower middle income', 'Low income');
+WHERE `Region` <> ''
+  AND `Income Group` <> ''
+  AND `Short Name` NOT IN ('World', 'High income', 'Upper middle income', 'Lower middle income', 'Low income');
 """)
 
-
+## Then count how many rows
 run_sql_and_return_html(cnx, """
 SELECT COUNT(*) AS "Number of Countries"
 FROM wdi_country;
 """)
+
 ```
 
 ## Task 5
@@ -122,11 +124,12 @@ ORDER BY "Country Count" DESC;
 ## Task 8
 ```{python}
 run_sql_and_return_html(cnx, """
-SELECT `Short Name`, `Region`
+SELECT country_region, country_name
 FROM wdi_country
-WHERE `Region` = 'North America'
-ORDER BY `Short Name`;
+WHERE country_region = 'North America'
+ORDER BY country_name;
 """)
+
 ```
 
 ## Task 9
@@ -151,9 +154,9 @@ ORDER BY `Short Name`;
 ## Task 11
 ```{python}
 run_sql_and_return_html(cnx, """
-SELECT `Income Group`, COUNT(*) AS num_countries
+SELECT country_income, COUNT(*) AS num_countries
 FROM wdi_country
-GROUP BY `Income Group`
+GROUP BY country_income
 ORDER BY num_countries DESC;
 """)
 ```
@@ -161,26 +164,28 @@ ORDER BY num_countries DESC;
 ## Task 12
 ```{python}
 run_sql_and_return_html(cnx, """
-SELECT `Short Name`, `Country Code`, `Region`, `Income Group`
+SELECT country_name, country_code, country_region, country_income
 FROM wdi_country
-WHERE `Income Group` IS NULL
-ORDER BY `Short Name`;
+WHERE country_income IS NULL OR country_income = ''
+ORDER BY country_name;
 """)
+
 ```
 
 ## Task 13
 ```{python}
 execute_ddl(cnx, """
 UPDATE wdi_country
-SET `Income Group` = 'High income'
-WHERE `Country Code` = 'VEN';
+SET country_income = 'Upper middle income'
+WHERE country_code = 'VEN';
 """)
 
 run_sql_and_return_html(cnx, """
-SELECT `Country Code`, `Short Name`, `Income Group`
+SELECT country_code, country_name, country_income
 FROM wdi_country
-WHERE `Country Code` = 'VEN';
+WHERE country_code = 'VEN';
 """)
+
 ```
 
 ## Task 14
@@ -196,28 +201,34 @@ ORDER BY `Region`, `Income Group`;
 ## Task 15
 ```{python}
 run_sql_and_return_html(cnx, """
-SELECT `Region`,
-  SUM(CASE WHEN `Income Group` = 'High income' THEN 1 ELSE 0 END) AS High_Income,
-  SUM(CASE WHEN `Income Group` = 'Upper middle income' THEN 1 ELSE 0 END) AS Upper_Middle_Income,
-  SUM(CASE WHEN `Income Group` = 'Lower middle income' THEN 1 ELSE 0 END) AS Lower_Middle_Income,
-  SUM(CASE WHEN `Income Group` = 'Low income' THEN 1 ELSE 0 END) AS Low_Income,
-  COUNT(*) AS Total
+SELECT
+    country_region AS Region,
+    SUM(CASE WHEN country_income = 'High income' THEN 1 ELSE 0 END) AS High_Income,
+    SUM(CASE WHEN country_income = 'Upper middle income' THEN 1 ELSE 0 END) AS Upper_Middle_Income,
+    SUM(CASE WHEN country_income = 'Lower middle income' THEN 1 ELSE 0 END) AS Lower_Middle_Income,
+    SUM(CASE WHEN country_income = 'Low income' THEN 1 ELSE 0 END) AS Low_Income,
+    SUM(CASE WHEN country_income IS NULL OR country_income = '' THEN 1 ELSE 0 END) AS Null_Income,
+    COUNT(*) AS Total_Countries
 FROM wdi_country
-GROUP BY `Region`
-ORDER BY `Region`;
+GROUP BY country_region
+ORDER BY country_region;
 """)
+
 ```
 
 ## Task 16
 ```{python}
 run_sql_and_return_html(cnx, """
-SELECT COUNT(*) AS Low_Income_Count, `Region`
+SELECT 
+  country_region AS Region,
+  COUNT(*) AS Low_Income_Countries
 FROM wdi_country
-WHERE `Income Group` = 'Low income'
-GROUP BY `Region`
-ORDER BY Low_Income_Count DESC
+WHERE country_income = 'Low income'
+GROUP BY country_region
+ORDER BY Low_Income_Countries DESC
 LIMIT 1;
 """)
+
 ```
 
 ## Task 17
@@ -255,43 +266,51 @@ ORDER BY r.Region, i.Income;
 ## Task 19
 ```{python}
 run_sql_and_return_html(cnx, """
-SELECT `Region`, `Income Group`,
-  COUNT(*) AS Country_Count,
-  (SELECT COUNT(*) FROM wdi_country WHERE `Region` = w.`Region`) AS Region_Total,
-  (SELECT COUNT(*) FROM wdi_country WHERE `Income Group` = w.`Income Group`) AS Income_Total,
-  (SELECT COUNT(*) FROM wdi_country) AS Global_Total,
-  ROUND(100 * COUNT(*) / (SELECT COUNT(*) FROM wdi_country), 2) AS Percent_of_Total
-FROM wdi_country w
-GROUP BY `Region`, `Income Group`
-ORDER BY Percent_of_Total DESC;
+SELECT
+    country_region AS Region,
+    country_income AS Income_Group,
+    COUNT(*) AS Country_Count,
+    (SELECT COUNT(*) FROM wdi_country WHERE country_region = wdi_country.country_region) AS Region_Total,
+    (SELECT COUNT(*) FROM wdi_country WHERE country_income = wdi_country.country_income) AS Income_Total,
+    (SELECT COUNT(*) FROM wdi_country) AS Global_Total,
+    ROUND(100 * COUNT(*) / (SELECT COUNT(*) FROM wdi_country), 2) AS Percent_Global
+FROM wdi_country
+GROUP BY country_region, country_income
+ORDER BY Percent_Global DESC;
 """)
+
 ```
 
 ## Task 20
 ```{python}
 run_sql_and_return_html(cnx, """
-SELECT `Region`,
-  ROUND(100 * SUM(CASE WHEN `Income Group` = 'High income' THEN 1 ELSE 0 END) / COUNT(*), 2) AS High_income_pct,
-  ROUND(100 * SUM(CASE WHEN `Income Group` = 'Upper middle income' THEN 1 ELSE 0 END) / COUNT(*), 2) AS Upper_middle_pct,
-  ROUND(100 * SUM(CASE WHEN `Income Group` = 'Lower middle income' THEN 1 ELSE 0 END) / COUNT(*), 2) AS Lower_middle_pct,
-  ROUND(100 * SUM(CASE WHEN `Income Group` = 'Low income' THEN 1 ELSE 0 END) / COUNT(*), 2) AS Low_income_pct
+SELECT
+    country_region AS Region,
+    ROUND(100 * SUM(CASE WHEN country_income = 'High income' THEN 1 ELSE 0 END) / COUNT(*), 2) AS High_Income_Percent,
+    ROUND(100 * SUM(CASE WHEN country_income = 'Upper middle income' THEN 1 ELSE 0 END) / COUNT(*), 2) AS Upper_Middle_Income_Percent,
+    ROUND(100 * SUM(CASE WHEN country_income = 'Lower middle income' THEN 1 ELSE 0 END) / COUNT(*), 2) AS Lower_Middle_Income_Percent,
+    ROUND(100 * SUM(CASE WHEN country_income = 'Low income' THEN 1 ELSE 0 END) / COUNT(*), 2) AS Low_Income_Percent,
+    ROUND(100 * SUM(CASE WHEN country_income IS NULL OR country_income = '' THEN 1 ELSE 0 END) / COUNT(*), 2) AS Other_Percent
 FROM wdi_country
-GROUP BY `Region`
-ORDER BY `Region`;
+GROUP BY country_region
+ORDER BY country_region;
 """)
+
 ```
 
 ## Task 21
 ```{python}
 run_sql_and_return_html(cnx, """
-SELECT `Income Group` AS Income_Group,
-  COUNT(*) AS Country_Count,
-  (SELECT COUNT(*) FROM wdi_country) AS Global_Total,
-  ROUND(100 * COUNT(*) / (SELECT COUNT(*) FROM wdi_country), 2) AS Percent_Global
+SELECT
+    country_income AS Income_Group,
+    COUNT(*) AS Country_Count,
+    (SELECT COUNT(*) FROM wdi_country) AS Global_Total,
+    ROUND(100 * COUNT(*) / (SELECT COUNT(*) FROM wdi_country), 1) AS Percent_Global
 FROM wdi_country
-GROUP BY `Income Group`
+GROUP BY country_income
 ORDER BY Country_Count DESC;
 """)
+
 ```
 
 
