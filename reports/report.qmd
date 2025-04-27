@@ -44,40 +44,42 @@ where table_schema in ('world_bank_data')
 ## Task 1
 ```{python}
 run_sql_and_return_html(cnx, """
-select count(*) as "Row Count"
-from world_bank_data.wdi_country
+SELECT COUNT(*) AS "Row Count"
+FROM world_bank_data.wdi_country;
 """)
 ```
 
 ## Task 2
 ```{python}
 run_sql_and_return_html(cnx, """
-select *
-from world_bank_data.wdi_country
-limit 10
+SELECT *
+FROM world_bank_data.wdi_country
+LIMIT 22;
 """)
 ```
 
 ## Task 3
 ```{python}
 run_sql_and_return_html(cnx, """
-select *
-from world_bank_data.wdi_country
-where country_region = '' or country_income = ''
+SELECT *
+FROM world_bank_data.wdi_country
+WHERE country_id NOT LIKE 'X%' AND (country_region = '' OR country_income = '' OR country_name IN ('World','High income','Upper middle income','Lower middle income','Low income'));
 """)
 ```
 
 ## Task 4
 ```{python}
 execute_ddl(cnx, """
-drop table if exists wdi_country;
+DROP TABLE IF EXISTS wdi_country;
 """)
+
 execute_ddl(cnx, """
-create table wdi_country as
-select *
-from world_bank_data.wdi_country
-where country_region <> '' and country_income <> '';
+CREATE TABLE wdi_country AS
+SELECT *
+FROM world_bank_data.wdi_country
+WHERE NOT (country_id NOT LIKE 'X%' AND (country_region = '' OR country_income = '' OR country_name IN ('World','High income','Upper middle income','Lower middle income','Low income')));
 """)
+
 run_sql_and_return_html(cnx, """
 select count(*) as "Number of Countries"
 from wdi_country
