@@ -1,6 +1,7 @@
 ---
 title: Homework 8 - World Bank Analysis
 author: Mohamed Elnafe
+date: last-modified
 format:
   html:
     theme: cosmo
@@ -20,7 +21,6 @@ GITHUB URL: <https://github.com/cmsc-vcu/cmsc408-sp2025-hw8-elnafem>
 ```{python}
 from helpers import create_database_engine, run_sql_and_return_df, run_sql_and_return_html, create_db_wrapper, execute_ddl_from_file, execute_ddl
 
-# Load these variables from .env file.
 config_map = {
   'user': "CMSC408_HW8_USER",
   'password': "CMSC408_HW8_PASSWORD",
@@ -29,10 +29,9 @@ config_map = {
 }
 
 cnx, config = create_db_wrapper(config_map)
-``` 
+```
 
 ```{python}
-# Quick test of the connection
 run_sql_and_return_html(cnx, """
 select table_schema, table_name, table_rows
 from information_schema.tables
@@ -42,277 +41,261 @@ where table_schema in ('world_bank_data')
 
 # Exercises
 
-## Task 1 - How many records in wdi_country?
-
+## Task 1
 ```{python}
 run_sql_and_return_html(cnx, """
-SELECT COUNT(*) AS "Row Count"
-FROM world_bank_data.wdi_country;
+select count(*) as "Row Count"
+from world_bank_data.wdi_country
 """)
 ```
 
-## Task 2 - Explore first 5 records
-
+## Task 2
 ```{python}
 run_sql_and_return_html(cnx, """
-SELECT *
-FROM world_bank_data.wdi_country
-LIMIT 5;
+select *
+from world_bank_data.wdi_country
+limit 10
 """)
 ```
 
-## Task 3 - List all non-countries
-
+## Task 3
 ```{python}
 run_sql_and_return_html(cnx, """
-SELECT *
-FROM world_bank_data.wdi_country
-WHERE country_code IN (
-  'WLD', 'ARB', 'CEB', 'CSS', 'EAS', 'EAP', 'ECA', 'EMU', 'EUU',
-  'FCS', 'HIC', 'LAC', 'LCN', 'LDC', 'LIC', 'LMC', 'MEA', 'MIC',
-  'MNA', 'NAC', 'OED', 'OSS', 'PRE', 'PSS', 'PST', 'SAS', 'SSA', 'SSF', 'UMC'
-);
+select *
+from world_bank_data.wdi_country
+where country_region = '' or country_income = ''
 """)
 ```
 
-## Task 4 - Create copy containing only countries
-
+## Task 4
 ```{python}
 execute_ddl(cnx, """
-DROP TABLE IF EXISTS wdi_country;
+drop table if exists wdi_country;
+""")
+execute_ddl(cnx, """
+create table wdi_country as
+select *
+from world_bank_data.wdi_country
+where country_region <> '' and country_income <> '';
+""")
+run_sql_and_return_html(cnx, """
+select count(*) as "Number of Countries"
+from wdi_country
 """)
 ```
 
+## Task 5
+```{python}
+run_sql_and_return_html(cnx, """
+select count(*) as "2020 Country Count"
+from wdi_country
+""")
+```
+
+## Task 6
+```{python}
+run_sql_and_return_html(cnx, """
+select distinct country_region
+from wdi_country
+order by country_region
+""")
+```
+
+## Task 7
+```{python}
+run_sql_and_return_html(cnx, """
+select country_region as Region, count(*) as "Country Count"
+from wdi_country
+group by country_region
+order by "Country Count" desc
+""")
+```
+
+## Task 8
+```{python}
+run_sql_and_return_html(cnx, """
+select country_name, country_region
+from wdi_country
+where lower(country_region) = 'north america'
+order by country_name
+""")
+```
+
+## Task 9
+```{python}
+run_sql_and_return_html(cnx, """
+select country_region, country_code, country_name
+from wdi_country
+where lower(country_name) = 'qatar'
+""")
+```
+
+## Task 10
+```{python}
+run_sql_and_return_html(cnx, """
+select country_code, country_name, country_abbr, country_wb_abbr, country_region
+from wdi_country
+where country_abbr <> country_wb_abbr
+order by country_name
+""")
+```
+
+## Task 11
+```{python}
+run_sql_and_return_html(cnx, """
+select country_income, count(*) as num_countries
+from wdi_country
+group by country_income
+order by num_countries desc
+""")
+```
+
+## Task 12
+```{python}
+run_sql_and_return_html(cnx, """
+select country_name, country_code, country_region, country_income
+from wdi_country
+where country_income = ''
+order by country_name
+""")
+```
+
+## Task 13
 ```{python}
 execute_ddl(cnx, """
-CREATE TABLE wdi_country AS
-SELECT *
-FROM world_bank_data.wdi_country
-WHERE country_region <> ''
-  AND country_income <> ''
-  AND country_code NOT IN (
-    'WLD', 'ARB', 'CEB', 'CSS', 'EAS', 'EAP', 'ECA', 'EMU', 'EUU',
-    'FCS', 'HIC', 'LAC', 'LCN', 'LDC', 'LIC', 'LMC', 'MEA', 'MIC',
-    'MNA', 'NAC', 'OED', 'OSS', 'PRE', 'PSS', 'PST', 'SAS', 'SSA', 'SSF', 'UMC'
-  );
+update wdi_country
+set country_income = 'High income'
+where country_code = 'VEN';
+""")
+run_sql_and_return_html(cnx, """
+select country_code, country_name, country_income
+from wdi_country
+where country_code = 'VEN'
 """)
 ```
 
+## Task 14
 ```{python}
 run_sql_and_return_html(cnx, """
-SELECT COUNT(*) AS "Number of Countries"
-FROM wdi_country;
+select country_region as Region, country_income as Income_Group, count(*) as Num_Countries
+from wdi_country
+group by country_region, country_income
+order by country_region, country_income
 """)
 ```
 
-## Task 5 - How many countries?
-
+## Task 15
 ```{python}
 run_sql_and_return_html(cnx, """
-SELECT COUNT(*) AS "2020 Country Count"
-FROM wdi_country;
+select country_region as Region,
+  sum(case when country_income = 'High income' then 1 else 0 end) as High_Income,
+  sum(case when country_income = 'Upper middle income' then 1 else 0 end) as Upper_Middle_Income,
+  sum(case when country_income = 'Lower middle income' then 1 else 0 end) as Lower_Middle_Income,
+  sum(case when country_income = 'Low income' then 1 else 0 end) as Low_Income,
+  sum(case when country_income = '' then 1 else 0 end) as Other,
+  count(*) as Total
+from wdi_country
+group by country_region
+order by country_region
 """)
 ```
 
-## Task 6 - Unique region values
-
+## Task 16
 ```{python}
 run_sql_and_return_html(cnx, """
-SELECT DISTINCT country_region
-FROM wdi_country
-ORDER BY country_region;
+select count(*) as Low_Income_Count, country_region, country_income
+from wdi_country
+where country_income = 'Low income'
+group by country_region, country_income
+order by Low_Income_Count desc
+limit 1
 """)
 ```
 
-## Task 7 - Number of countries per region
-
+## Task 17
 ```{python}
 run_sql_and_return_html(cnx, """
-SELECT country_region, COUNT(*) AS num_countries
-FROM wdi_country
-GROUP BY country_region
-ORDER BY num_countries DESC;
+select country_code, country_name, country_region, country_income
+from wdi_country
+where country_region = (
+    select country_region from wdi_country where country_code = 'MHL'
+) and country_income = (
+    select country_income from wdi_country where country_code = 'MHL'
+)
+order by country_name
 """)
 ```
 
-## Task 8 - North America countries
-
+## Task 18
 ```{python}
 run_sql_and_return_html(cnx, """
-SELECT country_name, country_region
-FROM wdi_country
-WHERE LOWER(country_region) = 'north america'
-ORDER BY country_name;
+select r.region, i.income, count(w.country_name) as num_countries
+from (select distinct country_region as region from wdi_country) r
+cross join (select distinct country_income as income from wdi_country) i
+left join wdi_country w
+on r.region = w.country_region and i.income = w.country_income
+group by r.region, i.income
+having num_countries = 0
+order by r.region, i.income
 """)
 ```
 
-## Task 9 - Where is Qatar?
-
+## Task 19
 ```{python}
 run_sql_and_return_html(cnx, """
-SELECT country_region, country_code, country_name
-FROM wdi_country
-WHERE LOWER(country_name) = 'qatar';
+select country_region as Region, country_income as Income_Group,
+  count(*) as Country_Count,
+  (select count(*) from wdi_country where country_region = w.country_region) as Region_Total,
+  (select count(*) from wdi_country where country_income = w.country_income) as Income_Total,
+  (select count(*) from wdi_country) as Global_Total,
+  round(100 * count(*) / (select count(*) from wdi_country), 2) as Percent_of_Total
+from wdi_country w
+group by country_region, country_income
+order by Percent_of_Total desc
 """)
 ```
 
-## Task 10 - Different abbreviations
-
+## Task 20
 ```{python}
 run_sql_and_return_html(cnx, """
-SELECT country_code, country_name, country_abbr, country_wb_abbr, country_region
-FROM wdi_country
-WHERE country_abbr <> country_wb_abbr
-ORDER BY country_name;
+select country_region,
+  round(100 * sum(case when country_income = 'High income' then 1 else 0 end) / count(*), 2) as High_income_pct,
+  round(100 * sum(case when country_income = 'Upper middle income' then 1 else 0 end) / count(*), 2) as Upper_middle_pct,
+  round(100 * sum(case when country_income = 'Lower middle income' then 1 else 0 end) / count(*), 2) as Lower_middle_pct,
+  round(100 * sum(case when country_income = 'Low income' then 1 else 0 end) / count(*), 2) as Low_income_pct,
+  round(100 * sum(case when country_income = '' then 1 else 0 end) / count(*), 2) as Other_pct
+from wdi_country
+group by country_region
+order by country_region
 """)
 ```
 
-## Task 11 - List income categories
-
+## Task 21
 ```{python}
 run_sql_and_return_html(cnx, """
-SELECT country_income, COUNT(*)
-FROM wdi_country
-GROUP BY country_income
-ORDER BY COUNT(*) DESC;
+select country_income as Income_Group,
+  count(*) as Country_Count,
+  (select count(*) from wdi_country) as Global_Total,
+  round(100 * count(*) / (select count(*) from wdi_country), 2) as Percent_Global
+from wdi_country
+group by country_income
+order by Country_Count desc
 """)
 ```
 
-## Task 12 - Find NULL income countries
+# Reflection
 
-```{python}
-run_sql_and_return_html(cnx, """
-SELECT country_name
-FROM wdi_country
-WHERE country_income = '';
-""")
-```
+## 1. Reflect on SQL Skills
+Throughout this assignment, I developed stronger skills in `SELECT`, `WHERE`, `GROUP BY`, and aggregation functions like `COUNT()`. I feel confident in writing basic queries and grouping data. I need more practice with `CROSS JOIN`, pivoting results, and cleaning datasets dynamically. This assignment helped reinforce structured SQL logic.
 
-## Task 13 - Update Venezuela to High Income
+## 2. Problem-Solving Approach
+For complex tasks like Tasks 18-21, I first visualized the output structure and wrote smaller subqueries. When encountering issues, I debugged piece by piece before merging queries together. In the future, I would plan more on paper before writing the SQL.
 
-```{python}
-execute_ddl(cnx, """
-UPDATE wdi_country
-SET country_income = 'High income'
-WHERE country_code = 'VEN';
-""")
-```
+## 3. Learning Takeaways
+SQL can be a powerful tool not just for querying but also for reshaping and validating datasets. These skills will help in real-world data analysis, data engineering, and building BI dashboards.
 
-```{python}
-run_sql_and_return_html(cnx, """
-SELECT country_name, country_income
-FROM wdi_country
-WHERE country_code = 'VEN';
-""")
-```
+# README
 
-## Task 14 - Region-Income pairs
-
-```{python}
-run_sql_and_return_html(cnx, """
-SELECT country_region, country_income, COUNT(*)
-FROM wdi_country
-GROUP BY country_region, country_income
-ORDER BY country_region, country_income;
-""")
-```
-
-## Task 15 - Pivot Region-Income Table
-
-```{python}
-run_sql_and_return_html(cnx, """
-SELECT
-  country_region,
-  SUM(CASE WHEN country_income = 'High income' THEN 1 ELSE 0 END) AS High_income,
-  SUM(CASE WHEN country_income = 'Upper middle income' THEN 1 ELSE 0 END) AS Upper_middle_income,
-  SUM(CASE WHEN country_income = 'Lower middle income' THEN 1 ELSE 0 END) AS Lower_middle_income,
-  SUM(CASE WHEN country_income = 'Low income' THEN 1 ELSE 0 END) AS Low_income,
-  SUM(CASE WHEN country_income = '' THEN 1 ELSE 0 END) AS Other,
-  COUNT(*) AS Total
-FROM wdi_country
-GROUP BY country_region
-ORDER BY country_region;
-""")
-```
-
-## Task 16 - Region with most low-income countries
-
-```{python}
-run_sql_and_return_html(cnx, """
-SELECT COUNT(*) AS Low_income_count, country_region, country_income
-FROM wdi_country
-WHERE country_income = 'Low income'
-GROUP BY country_region, country_income
-ORDER BY Low_income_count DESC
-LIMIT 1;
-""")
-```
-
-## Task 17 - Countries similar to Marshall Islands
-
-```{python}
-run_sql_and_return_html(cnx, """
-SELECT country_code, country_name, country_region, country_income
-FROM wdi_country
-WHERE country_region = (SELECT country_region FROM wdi_country WHERE country_code = 'MHL')
-  AND country_income = (SELECT country_income FROM wdi_country WHERE country_code = 'MHL')
-ORDER BY country_name;
-""")
-```
-
-## Task 18 - Missing region-income combinations
-
-```{python}
-run_sql_and_return_html(cnx, """
-SELECT r.region, i.income
-FROM (SELECT DISTINCT country_region AS region FROM wdi_country) r
-CROSS JOIN (SELECT DISTINCT country_income AS income FROM wdi_country) i
-LEFT JOIN wdi_country w ON r.region = w.country_region AND i.income = w.country_income
-GROUP BY r.region, i.income
-HAVING COUNT(w.country_name) = 0
-ORDER BY r.region, i.income;
-""")
-```
-
-## Task 19 - Percent table
-
-```{python}
-run_sql_and_return_html(cnx, """
-SELECT country_region, country_income, COUNT(*) AS country_count,
-       (SELECT COUNT(*) FROM wdi_country WHERE country_region = w.country_region) AS region_total,
-       (SELECT COUNT(*) FROM wdi_country WHERE country_income = w.country_income) AS income_total,
-       (SELECT COUNT(*) FROM wdi_country) AS global_total,
-       ROUND(100 * COUNT(*) / (SELECT COUNT(*) FROM wdi_country), 2) AS pct_global
-FROM wdi_country w
-GROUP BY country_region, country_income
-ORDER BY pct_global DESC;
-""")
-```
-
-## Task 20 - Percent pivot
-
-```{python}
-run_sql_and_return_html(cnx, """
-SELECT country_region,
-  ROUND(100 * SUM(CASE WHEN country_income = 'High income' THEN 1 ELSE 0 END) / COUNT(*), 2) AS High_pct,
-  ROUND(100 * SUM(CASE WHEN country_income = 'Upper middle income' THEN 1 ELSE 0 END) / COUNT(*), 2) AS Upper_pct,
-  ROUND(100 * SUM(CASE WHEN country_income = 'Lower middle income' THEN 1 ELSE 0 END) / COUNT(*), 2) AS Lower_pct,
-  ROUND(100 * SUM(CASE WHEN country_income = 'Low income' THEN 1 ELSE 0 END) / COUNT(*), 2) AS Low_pct,
-  ROUND(100 * SUM(CASE WHEN country_income = '' THEN 1 ELSE 0 END) / COUNT(*), 2) AS Other_pct
-FROM wdi_country
-GROUP BY country_region
-ORDER BY country_region;
-""")
-```
-
-## Task 21 - Overall income group percentages
-
-```{python}
-run_sql_and_return_html(cnx, """
-SELECT country_income, COUNT(*) AS country_count,
-       (SELECT COUNT(*) FROM wdi_country) AS global_total,
-       ROUND(100 * COUNT(*) / (SELECT COUNT(*) FROM wdi_country), 2) AS pct_global
-FROM wdi_country
-GROUP BY country_income
-ORDER BY country_count DESC;
-""")
+::: {style="background:lightgray; margin-left:20px; border-top: 3px solid black; border-bottom: 3px solid black; padding-left:20px; padding-right:20px"}
+{{< include ../README.md >}}
+:::
