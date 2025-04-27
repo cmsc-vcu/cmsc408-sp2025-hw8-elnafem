@@ -2,7 +2,7 @@
 title: Homework 8 - World Bank Analysis
 ---
 
-GITHUB URL:  <hhttps://github.com/cmsc-vcu/cmsc408-sp2025-hw8-elnafem>
+GITHUB URL:  <https://github.com/cmsc-vcu/cmsc408-sp2025-hw8-elnafem>
 
 
 # Problem Background
