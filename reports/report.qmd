@@ -116,19 +116,24 @@ Create your own copy of WDI_Country containing just countries.
 
 # drop table
 execute_ddl(cnx,"""
-drop table if exists wdi_country;
+DROP TABLE IF EXISTS wdi_country;
 """)
-```
+``` 
 
 ```{python}
-# create table
+# create table (correct version)
 execute_ddl(cnx, """
 CREATE TABLE wdi_country AS
 SELECT *
 FROM world_bank_data.wdi_country
-WHERE country_region <> '' AND country_income <> '';
+WHERE country_region <> ''
+  AND country_income <> ''
+  AND country_code NOT IN (
+    'WLD', 'ARB', 'CEB', 'CSS', 'EAS', 'EAP', 'ECA', 'EMU', 'EUU', 'FCS', 'HIC',
+    'LAC', 'LCN', 'LDC', 'LIC', 'LMC', 'MEA', 'MIC', 'MNA', 'NAC', 'OED', 'OSS',
+    'PRE', 'PSS', 'PST', 'SAS', 'SSA', 'SSF', 'UMC'
+  );
 """)
-
 ```
 
 ```{python}
@@ -137,7 +142,7 @@ run_sql_and_return_html(cnx, """
 SELECT COUNT(*) AS "Number of Countries"
 FROM wdi_country;
 """)
-```
+``` 
 
 ## Task 5
 
