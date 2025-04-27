@@ -3134,7 +3134,7 @@ vertical-align: -.125em;
 <p>GITHUB URL: <a href="https://github.com/cmsc-vcu/cmsc408-sp2025-hw8-elnafem" class="uri">https://github.com/cmsc-vcu/cmsc408-sp2025-hw8-elnafem</a></p>
 <section id="problem-background" class="level1">
 <h1>Problem Background</h1>
-<div id="ea106619" class="cell" data-execution_count="1">
+<div id="bc2dcb00" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> helpers <span class="im">import</span> create_database_engine, run_sql_and_return_df, run_sql_and_return_html, create_db_wrapper, execute_ddl_from_file, execute_ddl</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>config_map <span class="op">=</span> {</span>
@@ -3146,7 +3146,7 @@ vertical-align: -.125em;
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>cnx, config <span class="op">=</span> create_db_wrapper(config_map)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="11719beb" class="cell" data-execution_count="2">
+<div id="1a37b4eb" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="st">select table_schema, table_name, table_rows</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="st">from information_schema.tables</span></span>
@@ -3240,7 +3240,7 @@ Total Rows: 3, Total Columns: 3
 <h1>Exercises</h1>
 <section id="task-1" class="level2">
 <h2 class="anchored" data-anchor-id="task-1">Task 1</h2>
-<div id="7d88fa30" class="cell" data-execution_count="3">
+<div id="ee63d87a" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT COUNT(*) AS &quot;Row Count&quot;</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="st">FROM world_bank_data.wdi_country;</span></span>
@@ -3283,7 +3283,7 @@ Total Rows: 1, Total Columns: 1
 </section>
 <section id="task-2" class="level2">
 <h2 class="anchored" data-anchor-id="task-2">Task 2</h2>
-<div id="1ec0d9fc" class="cell" data-execution_count="4">
+<div id="57231ae0" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT *</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="st">FROM world_bank_data.wdi_country</span></span>
@@ -6260,13 +6260,13 @@ Total Rows: 22, Total Columns: 31
 <p>:::</p>
 <section id="task-3" class="level2">
 <h2 class="anchored" data-anchor-id="task-3">Task 3</h2>
-<div id="672ec440" class="cell" data-execution_count="5">
+<div id="ba757acb" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT *</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="st">FROM world_bank_data.wdi_country</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE country_name IN (&#39;World&#39;, &#39;High income&#39;, &#39;Upper middle income&#39;, &#39;Lower middle income&#39;, &#39;Low income&#39;)</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="st">  OR country_region = &#39;&#39;</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="st">  OR country_income = &#39;&#39;;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE `Short Name` IN (&#39;World&#39;, &#39;High income&#39;, &#39;Upper middle income&#39;, &#39;Lower middle income&#39;, &#39;Low income&#39;)</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="st">  OR `Region` = &#39;&#39;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="st">  OR `Income Group` = &#39;&#39;;</span></span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <table class="dataframe table table-sm table-striped small">
@@ -6276,11 +6276,127 @@ Total Rows: 22, Total Columns: 31
 <tr>
 
 <th>
-ErrorType
+Country Code
 </th>
 
 <th>
-ErrorMessage
+Short Name
+</th>
+
+<th>
+Table Name
+</th>
+
+<th>
+Long Name
+</th>
+
+<th>
+2-alpha code
+</th>
+
+<th>
+Currency Unit
+</th>
+
+<th>
+Special Notes
+</th>
+
+<th>
+Region
+</th>
+
+<th>
+Income Group
+</th>
+
+<th>
+WB-2 code
+</th>
+
+<th>
+National accounts base year
+</th>
+
+<th>
+National accounts reference year
+</th>
+
+<th>
+SNA price valuation
+</th>
+
+<th>
+Lending category
+</th>
+
+<th>
+Other groups
+</th>
+
+<th>
+System of National Accounts
+</th>
+
+<th>
+Alternative conversion factor
+</th>
+
+<th>
+PPP survey year
+</th>
+
+<th>
+Balance of Payments Manual in use
+</th>
+
+<th>
+External debt Reporting status
+</th>
+
+<th>
+System of trade
+</th>
+
+<th>
+Government Accounting concept
+</th>
+
+<th>
+IMF data dissemination standard
+</th>
+
+<th>
+Latest population census
+</th>
+
+<th>
+Latest household survey
+</th>
+
+<th>
+Source of most recent Income and expenditure data
+</th>
+
+<th>
+Vital registration complete
+</th>
+
+<th>
+Latest agricultural census
+</th>
+
+<th>
+Latest industrial data
+</th>
+
+<th>
+Latest trade data
+</th>
+
+<th>
+Latest water withdrawal data
 </th>
 
 </tr>
@@ -6292,18 +6408,646 @@ ErrorMessage
 <tr>
 
 <td>
-OperationalError
+HIC
 </td>
 
 <td>
-Operational Error: (pymysql.err.OperationalError) (1054, “Unknown column &#39;country_name&#39; in &#39;where clause&#39;”)\n[SQL: \nSELECT *\nFROM world_bank_data.wdi_country\nWHERE country_name IN (&#39;World&#39;, &#39;High income&#39;, &#39;Upper middle income&#39;, &#39;Lower middle income&#39;, &#39;Low income&#39;)\n OR country_region = &#39;&#39;\n OR country_income = &#39;&#39;;\n]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)
+High income
+</td>
+
+<td>
+High income
+</td>
+
+<td>
+High income
+</td>
+
+<td>
+XD
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+High income group aggregate. High-income economies are those in which 2023 Atlas GNI per capita was more than $14,005.
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+XD
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
 </td>
 
 </tr>
 
 <tr>
-<td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+
+<td>
+LIC
+</td>
+
+<td>
+Low income
+</td>
+
+<td>
+Low income
+</td>
+
+<td>
+Low income
+</td>
+
+<td>
+XM
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+Low income group aggregate. Low-income economies are those in which 2023 Atlas GNI per capita was $1,145 or less.
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+XM
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+LMC
+</td>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+Lower middle income
+</td>
+
+<td>
+XN
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+Lower middle income group aggregate. Lower-middle-income economies are those in which Atlas 2023 GNI per capita was between $1,146 and $4,515.
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+XN
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+UMC
+</td>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+Upper middle income
+</td>
+
+<td>
+XT
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+Upper middle income group aggregate. Upper-middle-income economies are those in which 2023 Atlas GNI per capita was between $4,516 and $14,005.
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+XT
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+WLD
+</td>
+
+<td>
+World
+</td>
+
+<td>
+World
+</td>
+
+<td>
+World
+</td>
+
+<td>
+1W
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+1W
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+<td>
+NULL
+</td>
+
+</tr>
+
+<tr>
+<td colspan="31" style="text-align: left;">
+Total Rows: 5, Total Columns: 31
 </td>
 </tr>
 </tbody>
@@ -6314,7 +7058,7 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-4" class="level2">
 <h2 class="anchored" data-anchor-id="task-4">Task 4</h2>
-<div id="4f2ad598" class="cell" data-execution_count="6">
+<div id="0eff7623" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>execute_ddl(cnx, <span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="st">DROP TABLE IF EXISTS wdi_country;</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span>
@@ -6323,15 +7067,18 @@ Total Rows: 1, Total Columns: 2
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="st">CREATE TABLE wdi_country AS</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT *</span></span>
 <span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="st">FROM world_bank_data.wdi_country</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE income_group IS NOT NULL</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="st">AND region IS NOT NULL</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="st">AND NOT (country_name IN (&#39;World&#39;, &#39;High income&#39;, &#39;Upper middle income&#39;, &#39;Lower middle income&#39;, &#39;Low income&#39;));</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT COUNT(*) AS &quot;Number of Countries&quot;</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="st">FROM wdi_country;</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE NOT (</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="st">    `Short Name` IN (&#39;World&#39;, &#39;High income&#39;, &#39;Upper middle income&#39;, &#39;Lower middle income&#39;, &#39;Low income&#39;)</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="st">    OR `Region` = &#39;&#39;</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="st">    OR `Income Group` = &#39;&#39;</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="st">);</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT COUNT(*) AS &quot;Number of Countries&quot;</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="st">FROM wdi_country;</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <table class="dataframe table table-sm table-striped small">
 
@@ -6340,11 +7087,7 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
-</th>
-
-<th>
-ErrorMessage
+Number of Countries
 </th>
 
 </tr>
@@ -6356,18 +7099,14 @@ ErrorMessage
 <tr>
 
 <td>
-ProgrammingError
-</td>
-
-<td>
-Programming Error: (pymysql.err.ProgrammingError) (1146, “Table &#39;sp25_elnafemr_hr.wdi_country&#39; doesn&#39;t exist”)\n[SQL: \nSELECT COUNT(*) AS “Number of Countries”\nFROM wdi_country;\n]\n(Background on this error at: https://sqlalche.me/e/20/f405)
+216
 </td>
 
 </tr>
 
 <tr>
-<td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+<td colspan="1" style="text-align: left;">
+Total Rows: 1, Total Columns: 1
 </td>
 </tr>
 </tbody>
@@ -6378,10 +7117,10 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-5" class="level2">
 <h2 class="anchored" data-anchor-id="task-5">Task 5</h2>
-<div id="6a6f27e3" class="cell" data-execution_count="7">
+<div id="645771bc" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="st">select count(*) as &quot;2020 Country Count&quot;</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="st">from wdi_country</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT COUNT(*) AS &quot;Number of Countries&quot;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="st">FROM wdi_country;</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <table class="dataframe table table-sm table-striped small">
@@ -6391,11 +7130,7 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
-</th>
-
-<th>
-ErrorMessage
+Number of Countries
 </th>
 
 </tr>
@@ -6407,18 +7142,14 @@ ErrorMessage
 <tr>
 
 <td>
-ProgrammingError
-</td>
-
-<td>
-Programming Error: (pymysql.err.ProgrammingError) (1146, “Table &#39;sp25_elnafemr_hr.wdi_country&#39; doesn&#39;t exist”)\n[SQL: \nselect count(*) as “2020 Country Count”\nfrom wdi_country\n]\n(Background on this error at: https://sqlalche.me/e/20/f405)
+216
 </td>
 
 </tr>
 
 <tr>
-<td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+<td colspan="1" style="text-align: left;">
+Total Rows: 1, Total Columns: 1
 </td>
 </tr>
 </tbody>
@@ -6429,11 +7160,11 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-6" class="level2">
 <h2 class="anchored" data-anchor-id="task-6">Task 6</h2>
-<div id="a451f030" class="cell" data-execution_count="8">
+<div id="492b60dc" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="st">select distinct country_region</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="st">from wdi_country</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="st">order by country_region</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT DISTINCT `Region`</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="st">FROM wdi_country</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY `Region`;</span></span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <table class="dataframe table table-sm table-striped small">
@@ -6443,11 +7174,7 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
-</th>
-
-<th>
-ErrorMessage
+Region
 </th>
 
 </tr>
@@ -6459,18 +7186,62 @@ ErrorMessage
 <tr>
 
 <td>
-ProgrammingError
-</td>
-
-<td>
-Programming Error: (pymysql.err.ProgrammingError) (1146, “Table &#39;sp25_elnafemr_hr.wdi_country&#39; doesn&#39;t exist”)\n[SQL: \nselect distinct country_region\nfrom wdi_country\norder by country_region\n]\n(Background on this error at: https://sqlalche.me/e/20/f405)
+East Asia &amp; Pacific
 </td>
 
 </tr>
 
 <tr>
-<td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+
+<td>
+Europe &amp; Central Asia
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Latin America &amp; Caribbean
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Middle East &amp; North Africa
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+North America
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+South Asia
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+Sub-Saharan Africa
+</td>
+
+</tr>
+
+<tr>
+<td colspan="1" style="text-align: left;">
+Total Rows: 7, Total Columns: 1
 </td>
 </tr>
 </tbody>
@@ -6481,7 +7252,7 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-7" class="level2">
 <h2 class="anchored" data-anchor-id="task-7">Task 7</h2>
-<div id="56235d46" class="cell" data-execution_count="9">
+<div id="76ba4ec2" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="st">select country_region as Region, count(*) as &quot;Country Count&quot;</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="st">from wdi_country</span></span>
@@ -6512,11 +7283,11 @@ ErrorMessage
 <tr>
 
 <td>
-ProgrammingError
+OperationalError
 </td>
 
 <td>
-Programming Error: (pymysql.err.ProgrammingError) (1146, “Table &#39;sp25_elnafemr_hr.wdi_country&#39; doesn&#39;t exist”)\n[SQL: \nselect country_region as Region, count(*) as “Country Count”\nfrom wdi_country\ngroup by country_region\norder by “Country Count” desc\n]\n(Background on this error at: https://sqlalche.me/e/20/f405)
+Operational Error: (pymysql.err.OperationalError) (1054, “Unknown column &#39;country_region&#39; in &#39;field list&#39;”)\n[SQL: \nselect country_region as Region, count(*) as “Country Count”\nfrom wdi_country\ngroup by country_region\norder by “Country Count” desc\n]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)
 </td>
 
 </tr>
@@ -6534,7 +7305,7 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-8" class="level2">
 <h2 class="anchored" data-anchor-id="task-8">Task 8</h2>
-<div id="395d821e" class="cell" data-execution_count="10">
+<div id="f666059b" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="st">select country_name, country_region</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="st">from wdi_country</span></span>
@@ -6565,11 +7336,11 @@ ErrorMessage
 <tr>
 
 <td>
-ProgrammingError
+OperationalError
 </td>
 
 <td>
-Programming Error: (pymysql.err.ProgrammingError) (1146, “Table &#39;sp25_elnafemr_hr.wdi_country&#39; doesn&#39;t exist”)\n[SQL: \nselect country_name, country_region\nfrom wdi_country\nwhere lower(country_region) = &#39;north america&#39;\norder by country_name\n]\n(Background on this error at: https://sqlalche.me/e/20/f405)
+Operational Error: (pymysql.err.OperationalError) (1054, “Unknown column &#39;country_name&#39; in &#39;field list&#39;”)\n[SQL: \nselect country_name, country_region\nfrom wdi_country\nwhere lower(country_region) = &#39;north america&#39;\norder by country_name\n]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)
 </td>
 
 </tr>
@@ -6587,11 +7358,11 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-9" class="level2">
 <h2 class="anchored" data-anchor-id="task-9">Task 9</h2>
-<div id="646d8f32" class="cell" data-execution_count="11">
+<div id="734b8fab" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="st">select country_region, country_code, country_name</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="st">from wdi_country</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="st">where lower(country_name) = &#39;qatar&#39;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT `Region`, `Country Code`, `Short Name`</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="st">FROM wdi_country</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE LOWER(`Short Name`) = &#39;qatar&#39;;</span></span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;&quot;&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <table class="dataframe table table-sm table-striped small">
@@ -6601,11 +7372,15 @@ Total Rows: 1, Total Columns: 2
 <tr>
 
 <th>
-ErrorType
+Region
 </th>
 
 <th>
-ErrorMessage
+Country Code
+</th>
+
+<th>
+Short Name
 </th>
 
 </tr>
@@ -6617,18 +7392,22 @@ ErrorMessage
 <tr>
 
 <td>
-ProgrammingError
+Middle East &amp; North Africa
 </td>
 
 <td>
-Programming Error: (pymysql.err.ProgrammingError) (1146, “Table &#39;sp25_elnafemr_hr.wdi_country&#39; doesn&#39;t exist”)\n[SQL: \nselect country_region, country_code, country_name\nfrom wdi_country\nwhere lower(country_name) = &#39;qatar&#39;\n]\n(Background on this error at: https://sqlalche.me/e/20/f405)
+QAT
+</td>
+
+<td>
+Qatar
 </td>
 
 </tr>
 
 <tr>
-<td colspan="2" style="text-align: left;">
-Total Rows: 1, Total Columns: 2
+<td colspan="3" style="text-align: left;">
+Total Rows: 1, Total Columns: 3
 </td>
 </tr>
 </tbody>
@@ -6639,7 +7418,7 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-10" class="level2">
 <h2 class="anchored" data-anchor-id="task-10">Task 10</h2>
-<div id="42d719bd" class="cell" data-execution_count="12">
+<div id="883a07d0" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="st">select country_code, country_name, country_abbr, country_wb_abbr, country_region</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="st">from wdi_country</span></span>
@@ -6670,11 +7449,11 @@ ErrorMessage
 <tr>
 
 <td>
-ProgrammingError
+OperationalError
 </td>
 
 <td>
-Programming Error: (pymysql.err.ProgrammingError) (1146, “Table &#39;sp25_elnafemr_hr.wdi_country&#39; doesn&#39;t exist”)\n[SQL: \nselect country_code, country_name, country_abbr, country_wb_abbr, country_region\nfrom wdi_country\nwhere country_abbr &lt;&gt; country_wb_abbr\norder by country_name\n]\n(Background on this error at: https://sqlalche.me/e/20/f405)
+Operational Error: (pymysql.err.OperationalError) (1054, “Unknown column &#39;country_code&#39; in &#39;field list&#39;”)\n[SQL: \nselect country_code, country_name, country_abbr, country_wb_abbr, country_region\nfrom wdi_country\nwhere country_abbr &lt;&gt; country_wb_abbr\norder by country_name\n]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)
 </td>
 
 </tr>
@@ -6692,7 +7471,7 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-11" class="level2">
 <h2 class="anchored" data-anchor-id="task-11">Task 11</h2>
-<div id="0fdad908" class="cell" data-execution_count="13">
+<div id="0b47fd1a" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="st">select country_income, count(*) as num_countries</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="st">from wdi_country</span></span>
@@ -6723,11 +7502,11 @@ ErrorMessage
 <tr>
 
 <td>
-ProgrammingError
+OperationalError
 </td>
 
 <td>
-Programming Error: (pymysql.err.ProgrammingError) (1146, “Table &#39;sp25_elnafemr_hr.wdi_country&#39; doesn&#39;t exist”)\n[SQL: \nselect country_income, count(*) as num_countries\nfrom wdi_country\ngroup by country_income\norder by num_countries desc\n]\n(Background on this error at: https://sqlalche.me/e/20/f405)
+Operational Error: (pymysql.err.OperationalError) (1054, “Unknown column &#39;country_income&#39; in &#39;field list&#39;”)\n[SQL: \nselect country_income, count(*) as num_countries\nfrom wdi_country\ngroup by country_income\norder by num_countries desc\n]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)
 </td>
 
 </tr>
@@ -6745,7 +7524,7 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-12" class="level2">
 <h2 class="anchored" data-anchor-id="task-12">Task 12</h2>
-<div id="7c67d13d" class="cell" data-execution_count="14">
+<div id="8315b674" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="st">select country_name, country_code, country_region, country_income</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="st">from wdi_country</span></span>
@@ -6776,11 +7555,11 @@ ErrorMessage
 <tr>
 
 <td>
-ProgrammingError
+OperationalError
 </td>
 
 <td>
-Programming Error: (pymysql.err.ProgrammingError) (1146, “Table &#39;sp25_elnafemr_hr.wdi_country&#39; doesn&#39;t exist”)\n[SQL: \nselect country_name, country_code, country_region, country_income\nfrom wdi_country\nwhere country_income = &#39;&#39;\norder by country_name\n]\n(Background on this error at: https://sqlalche.me/e/20/f405)
+Operational Error: (pymysql.err.OperationalError) (1054, “Unknown column &#39;country_name&#39; in &#39;field list&#39;”)\n[SQL: \nselect country_name, country_code, country_region, country_income\nfrom wdi_country\nwhere country_income = &#39;&#39;\norder by country_name\n]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)
 </td>
 
 </tr>
@@ -6798,7 +7577,7 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-13" class="level2">
 <h2 class="anchored" data-anchor-id="task-13">Task 13</h2>
-<div id="44751a38" class="cell" data-execution_count="15">
+<div id="70324140" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>execute_ddl(cnx, <span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="st">update wdi_country</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="st">set country_income = &#39;High income&#39;</span></span>
@@ -6833,11 +7612,11 @@ ErrorMessage
 <tr>
 
 <td>
-ProgrammingError
+OperationalError
 </td>
 
 <td>
-Programming Error: (pymysql.err.ProgrammingError) (1146, “Table &#39;sp25_elnafemr_hr.wdi_country&#39; doesn&#39;t exist”)\n[SQL: \nselect country_code, country_name, country_income\nfrom wdi_country\nwhere country_code = &#39;VEN&#39;\n]\n(Background on this error at: https://sqlalche.me/e/20/f405)
+Operational Error: (pymysql.err.OperationalError) (1054, “Unknown column &#39;country_code&#39; in &#39;field list&#39;”)\n[SQL: \nselect country_code, country_name, country_income\nfrom wdi_country\nwhere country_code = &#39;VEN&#39;\n]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)
 </td>
 
 </tr>
@@ -6855,7 +7634,7 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-14" class="level2">
 <h2 class="anchored" data-anchor-id="task-14">Task 14</h2>
-<div id="b12db171" class="cell" data-execution_count="16">
+<div id="1792940c" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="st">select country_region as Region, country_income as Income_Group, count(*) as Num_Countries</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="st">from wdi_country</span></span>
@@ -6886,11 +7665,11 @@ ErrorMessage
 <tr>
 
 <td>
-ProgrammingError
+OperationalError
 </td>
 
 <td>
-Programming Error: (pymysql.err.ProgrammingError) (1146, “Table &#39;sp25_elnafemr_hr.wdi_country&#39; doesn&#39;t exist”)\n[SQL: \nselect country_region as Region, country_income as Income_Group, count(*) as Num_Countries\nfrom wdi_country\ngroup by country_region, country_income\norder by country_region, country_income\n]\n(Background on this error at: https://sqlalche.me/e/20/f405)
+Operational Error: (pymysql.err.OperationalError) (1054, “Unknown column &#39;country_region&#39; in &#39;field list&#39;”)\n[SQL: \nselect country_region as Region, country_income as Income_Group, count(*) as Num_Countries\nfrom wdi_country\ngroup by country_region, country_income\norder by country_region, country_income\n]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)
 </td>
 
 </tr>
@@ -6908,7 +7687,7 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-15" class="level2">
 <h2 class="anchored" data-anchor-id="task-15">Task 15</h2>
-<div id="da757e0b" class="cell" data-execution_count="17">
+<div id="17d2cf74" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="st">select country_region as Region,</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="st">  sum(case when country_income = &#39;High income&#39; then 1 else 0 end) as High_Income,</span></span>
@@ -6945,11 +7724,11 @@ ErrorMessage
 <tr>
 
 <td>
-ProgrammingError
+OperationalError
 </td>
 
 <td>
-Programming Error: (pymysql.err.ProgrammingError) (1146, “Table &#39;sp25_elnafemr_hr.wdi_country&#39; doesn&#39;t exist”)\n[SQL: \nselect country_region as Region,\n sum(case when country_income = &#39;High income&#39; then 1 else 0 end) as High_Income,\n sum(case when country_income = &#39;Upper middle income&#39; then 1 else 0 end) as Upper_Middle_Income,\n sum(case when country_income = &#39;Lower middle income&#39; then 1 else 0 end) as Lower_Middle_Income,\n sum(case when country_income = &#39;Low income&#39; then 1 else 0 end) as Low_Income,\n sum(case when country_income = &#39;&#39; then 1 else 0 end) as Other,\n count(*) as Total\nfrom wdi_country\ngroup by country_region\norder by country_region\n]\n(Background on this error at: https://sqlalche.me/e/20/f405)
+Operational Error: (pymysql.err.OperationalError) (1054, “Unknown column &#39;country_region&#39; in &#39;field list&#39;”)\n[SQL: \nselect country_region as Region,\n sum(case when country_income = &#39;High income&#39; then 1 else 0 end) as High_Income,\n sum(case when country_income = &#39;Upper middle income&#39; then 1 else 0 end) as Upper_Middle_Income,\n sum(case when country_income = &#39;Lower middle income&#39; then 1 else 0 end) as Lower_Middle_Income,\n sum(case when country_income = &#39;Low income&#39; then 1 else 0 end) as Low_Income,\n sum(case when country_income = &#39;&#39; then 1 else 0 end) as Other,\n count(*) as Total\nfrom wdi_country\ngroup by country_region\norder by country_region\n]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)
 </td>
 
 </tr>
@@ -6967,7 +7746,7 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-16" class="level2">
 <h2 class="anchored" data-anchor-id="task-16">Task 16</h2>
-<div id="92662d5b" class="cell" data-execution_count="18">
+<div id="bba9e41e" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="st">select count(*) as Low_Income_Count, country_region, country_income</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="st">from wdi_country</span></span>
@@ -7000,11 +7779,11 @@ ErrorMessage
 <tr>
 
 <td>
-ProgrammingError
+OperationalError
 </td>
 
 <td>
-Programming Error: (pymysql.err.ProgrammingError) (1146, “Table &#39;sp25_elnafemr_hr.wdi_country&#39; doesn&#39;t exist”)\n[SQL: \nselect count(*) as Low_Income_Count, country_region, country_income\nfrom wdi_country\nwhere country_income = &#39;Low income&#39;\ngroup by country_region, country_income\norder by Low_Income_Count desc\nlimit 1\n]\n(Background on this error at: https://sqlalche.me/e/20/f405)
+Operational Error: (pymysql.err.OperationalError) (1054, “Unknown column &#39;country_region&#39; in &#39;field list&#39;”)\n[SQL: \nselect count(*) as Low_Income_Count, country_region, country_income\nfrom wdi_country\nwhere country_income = &#39;Low income&#39;\ngroup by country_region, country_income\norder by Low_Income_Count desc\nlimit 1\n]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)
 </td>
 
 </tr>
@@ -7022,7 +7801,7 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-17" class="level2">
 <h2 class="anchored" data-anchor-id="task-17">Task 17</h2>
-<div id="ed8ffb7c" class="cell" data-execution_count="19">
+<div id="78751d19" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="st">select country_code, country_name, country_region, country_income</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="st">from wdi_country</span></span>
@@ -7057,11 +7836,11 @@ ErrorMessage
 <tr>
 
 <td>
-ProgrammingError
+OperationalError
 </td>
 
 <td>
-Programming Error: (pymysql.err.ProgrammingError) (1146, “Table &#39;sp25_elnafemr_hr.wdi_country&#39; doesn&#39;t exist”)\n[SQL: \nselect country_code, country_name, country_region, country_income\nfrom wdi_country\nwhere country_region = (\n select country_region from wdi_country where country_code = &#39;MHL&#39;\n) and country_income = (\n select country_income from wdi_country where country_code = &#39;MHL&#39;\n)\norder by country_name\n]\n(Background on this error at: https://sqlalche.me/e/20/f405)
+Operational Error: (pymysql.err.OperationalError) (1054, “Unknown column &#39;country_code&#39; in &#39;field list&#39;”)\n[SQL: \nselect country_code, country_name, country_region, country_income\nfrom wdi_country\nwhere country_region = (\n select country_region from wdi_country where country_code = &#39;MHL&#39;\n) and country_income = (\n select country_income from wdi_country where country_code = &#39;MHL&#39;\n)\norder by country_name\n]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)
 </td>
 
 </tr>
@@ -7079,7 +7858,7 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-18" class="level2">
 <h2 class="anchored" data-anchor-id="task-18">Task 18</h2>
-<div id="bcc43c43" class="cell" data-execution_count="20">
+<div id="6b1022a0" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="st">select r.region, i.income, count(w.country_name) as num_countries</span></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="st">from (select distinct country_region as region from wdi_country) r</span></span>
@@ -7114,11 +7893,11 @@ ErrorMessage
 <tr>
 
 <td>
-ProgrammingError
+OperationalError
 </td>
 
 <td>
-Programming Error: (pymysql.err.ProgrammingError) (1146, “Table &#39;sp25_elnafemr_hr.wdi_country&#39; doesn&#39;t exist”)\n[SQL: \nselect r.region, i.income, count(w.country_name) as num_countries\nfrom (select distinct country_region as region from wdi_country) r\ncross join (select distinct country_income as income from wdi_country) i\nleft join wdi_country w\non r.region = w.country_region and i.income = w.country_income\ngroup by r.region, i.income\nhaving num_countries = 0\norder by r.region, i.income\n]\n(Background on this error at: https://sqlalche.me/e/20/f405)
+Operational Error: (pymysql.err.OperationalError) (1054, “Unknown column &#39;country_region&#39; in &#39;field list&#39;”)\n[SQL: \nselect r.region, i.income, count(w.country_name) as num_countries\nfrom (select distinct country_region as region from wdi_country) r\ncross join (select distinct country_income as income from wdi_country) i\nleft join wdi_country w\non r.region = w.country_region and i.income = w.country_income\ngroup by r.region, i.income\nhaving num_countries = 0\norder by r.region, i.income\n]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)
 </td>
 
 </tr>
@@ -7136,7 +7915,7 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-19" class="level2">
 <h2 class="anchored" data-anchor-id="task-19">Task 19</h2>
-<div id="f669aec2" class="cell" data-execution_count="21">
+<div id="4a2baac4" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="st">select country_region as Region, country_income as Income_Group,</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="st">  count(*) as Country_Count,</span></span>
@@ -7172,11 +7951,11 @@ ErrorMessage
 <tr>
 
 <td>
-ProgrammingError
+OperationalError
 </td>
 
 <td>
-Programming Error: (pymysql.err.ProgrammingError) (1146, “Table &#39;sp25_elnafemr_hr.wdi_country&#39; doesn&#39;t exist”)\n[SQL: \nselect country_region as Region, country_income as Income_Group,\n count(<em>) as Country_Count,\n (select count(</em>) from wdi_country where country_region = w.country_region) as Region_Total,\n (select count(<em>) from wdi_country where country_income = w.country_income) as Income_Total,\n (select count(</em>) from wdi_country) as Global_Total,\n round(100 * count(<em>) / (select count(</em>) from wdi_country), 2) as Percent_of_Total\nfrom wdi_country w\ngroup by country_region, country_income\norder by Percent_of_Total desc\n]\n(Background on this error at: https://sqlalche.me/e/20/f405)
+Operational Error: (pymysql.err.OperationalError) (1054, “Unknown column &#39;country_region&#39; in &#39;field list&#39;”)\n[SQL: \nselect country_region as Region, country_income as Income_Group,\n count(<em>) as Country_Count,\n (select count(</em>) from wdi_country where country_region = w.country_region) as Region_Total,\n (select count(<em>) from wdi_country where country_income = w.country_income) as Income_Total,\n (select count(</em>) from wdi_country) as Global_Total,\n round(100 * count(<em>) / (select count(</em>) from wdi_country), 2) as Percent_of_Total\nfrom wdi_country w\ngroup by country_region, country_income\norder by Percent_of_Total desc\n]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)
 </td>
 
 </tr>
@@ -7194,7 +7973,7 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-20" class="level2">
 <h2 class="anchored" data-anchor-id="task-20">Task 20</h2>
-<div id="b7f32532" class="cell" data-execution_count="22">
+<div id="b4a7dfba" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="st">select country_region,</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="st">  round(100 * sum(case when country_income = &#39;High income&#39; then 1 else 0 end) / count(*), 2) as High_income_pct,</span></span>
@@ -7230,11 +8009,11 @@ ErrorMessage
 <tr>
 
 <td>
-ProgrammingError
+OperationalError
 </td>
 
 <td>
-Programming Error: (pymysql.err.ProgrammingError) (1146, “Table &#39;sp25_elnafemr_hr.wdi_country&#39; doesn&#39;t exist”)\n[SQL: \nselect country_region,\n round(100 * sum(case when country_income = &#39;High income&#39; then 1 else 0 end) / count(<em>), 2) as High_income_pct,\n round(100 </em> sum(case when country_income = &#39;Upper middle income&#39; then 1 else 0 end) / count(<em>), 2) as Upper_middle_pct,\n round(100 </em> sum(case when country_income = &#39;Lower middle income&#39; then 1 else 0 end) / count(<em>), 2) as Lower_middle_pct,\n round(100 </em> sum(case when country_income = &#39;Low income&#39; then 1 else 0 end) / count(<em>), 2) as Low_income_pct,\n round(100 </em> sum(case when country_income = &#39;&#39; then 1 else 0 end) / count(*), 2) as Other_pct\nfrom wdi_country\ngroup by country_region\norder by country_region\n]\n(Background on this error at: https://sqlalche.me/e/20/f405)
+Operational Error: (pymysql.err.OperationalError) (1054, “Unknown column &#39;country_region&#39; in &#39;field list&#39;”)\n[SQL: \nselect country_region,\n round(100 * sum(case when country_income = &#39;High income&#39; then 1 else 0 end) / count(<em>), 2) as High_income_pct,\n round(100 </em> sum(case when country_income = &#39;Upper middle income&#39; then 1 else 0 end) / count(<em>), 2) as Upper_middle_pct,\n round(100 </em> sum(case when country_income = &#39;Lower middle income&#39; then 1 else 0 end) / count(<em>), 2) as Lower_middle_pct,\n round(100 </em> sum(case when country_income = &#39;Low income&#39; then 1 else 0 end) / count(<em>), 2) as Low_income_pct,\n round(100 </em> sum(case when country_income = &#39;&#39; then 1 else 0 end) / count(*), 2) as Other_pct\nfrom wdi_country\ngroup by country_region\norder by country_region\n]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)
 </td>
 
 </tr>
@@ -7252,7 +8031,7 @@ Total Rows: 1, Total Columns: 2
 </section>
 <section id="task-21" class="level2">
 <h2 class="anchored" data-anchor-id="task-21">Task 21</h2>
-<div id="4ff525ea" class="cell" data-execution_count="23">
+<div id="6ba70b0e" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>run_sql_and_return_html(cnx, <span class="st">&quot;&quot;&quot;</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="st">select country_income as Income_Group,</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="st">  count(*) as Country_Count,</span></span>
@@ -7286,11 +8065,11 @@ ErrorMessage
 <tr>
 
 <td>
-ProgrammingError
+OperationalError
 </td>
 
 <td>
-Programming Error: (pymysql.err.ProgrammingError) (1146, “Table &#39;sp25_elnafemr_hr.wdi_country&#39; doesn&#39;t exist”)\n[SQL: \nselect country_income as Income_Group,\n count(<em>) as Country_Count,\n (select count(</em>) from wdi_country) as Global_Total,\n round(100 * count(<em>) / (select count(</em>) from wdi_country), 2) as Percent_Global\nfrom wdi_country\ngroup by country_income\norder by Country_Count desc\n]\n(Background on this error at: https://sqlalche.me/e/20/f405)
+Operational Error: (pymysql.err.OperationalError) (1054, “Unknown column &#39;country_income&#39; in &#39;field list&#39;”)\n[SQL: \nselect country_income as Income_Group,\n count(<em>) as Country_Count,\n (select count(</em>) from wdi_country) as Global_Total,\n round(100 * count(<em>) / (select count(</em>) from wdi_country), 2) as Percent_Global\nfrom wdi_country\ngroup by country_income\norder by Country_Count desc\n]\n(Background on this error at: https://sqlalche.me/e/20/e3q8)
 </td>
 
 </tr>
