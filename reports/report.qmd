@@ -1,12 +1,21 @@
 ---
 title: Homework 8 - World Bank Analysis
+author: Mohamed Elnafe
+format:
+  html:
+    theme: cosmo
+    toc: true
+    embed-resources: true
+    code-copy: true
+execute:
+  cache: false
+  echo: true
+  eval: true
 ---
 
-GITHUB URL:  <https://github.com/cmsc-vcu/cmsc408-sp2025-hw8-elnafem>
-
+GITHUB URL: <https://github.com/cmsc-vcu/cmsc408-sp2025-hw8-elnafem>
 
 # Problem Background
-
 
 ```{python}
 from helpers import create_database_engine, run_sql_and_return_df, run_sql_and_return_html, create_db_wrapper, execute_ddl_from_file, execute_ddl
@@ -19,109 +28,62 @@ config_map = {
   'database': "CMSC408_HW8_DB_NAME"
 }
 
-cnx,config = create_db_wrapper( config_map )
-  
-```
-
+cnx, config = create_db_wrapper(config_map)
+``` 
 
 ```{python}
-# Do a quick test of the connection and trap the errors better!
-
-run_sql_and_return_html(cnx,"""
-select
-  table_schema, table_name, table_rows
-from
-  information_schema.tables
-where
-  table_schema in ('world_bank_data')
+# Quick test of the connection
+run_sql_and_return_html(cnx, """
+select table_schema, table_name, table_rows
+from information_schema.tables
+where table_schema in ('world_bank_data')
 """)
-
 ```
 
 # Exercises
 
-In the following exercises, write the SQL as requested to discover the answer.
-
-## Task 1
-
-How many records are in the country table?
+## Task 1 - How many records in wdi_country?
 
 ```{python}
-# How many records are in the world_bank_data.wdi_country table?
-# (skills: select, aggregate)
-
-run_sql_and_return_html(cnx,"""
-select
-  count(*) as "Row Count"
-from
-  world_bank_data.wdi_country
+run_sql_and_return_html(cnx, """
+SELECT COUNT(*) AS "Row Count"
+FROM world_bank_data.wdi_country;
 """)
-
 ```
 
-## Task 2
-
-Explore the first 5 records in the country table.
+## Task 2 - Explore first 5 records
 
 ```{python}
-## write out the first 10 records and look at the columns
-## Do you see any blanks or missing data?
-## (skills: select, limit)
-
-run_sql_and_return_html(cnx,"""
-select
-  *
-from 
-  world_bank_data.wdi_country
-limit 5
-""")
-
-```
-
-
-## Task 3
-
-List all non-countries.
-
-```{python}
-## task 3
-## Which records are NOT for countries, that is they're for regions or groups of countries.
-## How can you tell?
-## Once you figure it out, write a query to list all the non-countries
-## (skills: select, where)
-
 run_sql_and_return_html(cnx, """
 SELECT *
 FROM world_bank_data.wdi_country
-WHERE country_region = '' OR country_income = '' OR country_code IN (
-  'WLD', 'ARB', 'CEB', 'CSS', 'EAS', 'EAP', 'ECA', 'EMU', 'EUU', 'FCS', 'HIC', 'LAC',
-  'LCN', 'LDC', 'LIC', 'LMC', 'MEA', 'MIC', 'MNA', 'NAC', 'OED', 'OSS', 'PRE', 'PSS',
-  'PST', 'SAS', 'SSA', 'SSF', 'UMC'
-)
+LIMIT 5;
 """)
-
 ```
 
-## Task 4
-
-Create your own copy of WDI_Country containing just countries.
+## Task 3 - List all non-countries
 
 ```{python}
-## task 4
-## The WDI table clearly contains information for countries and non-countries
-## using CREATE TABLE ... SELECT from WHERE syntax.
-## Finally, below write a query to return the number
-## of records in the new table.
-## (skills: select, aggregate)
+run_sql_and_return_html(cnx, """
+SELECT *
+FROM world_bank_data.wdi_country
+WHERE country_code IN (
+  'WLD', 'ARB', 'CEB', 'CSS', 'EAS', 'EAP', 'ECA', 'EMU', 'EUU',
+  'FCS', 'HIC', 'LAC', 'LCN', 'LDC', 'LIC', 'LMC', 'MEA', 'MIC',
+  'MNA', 'NAC', 'OED', 'OSS', 'PRE', 'PSS', 'PST', 'SAS', 'SSA', 'SSF', 'UMC'
+);
+""")
+```
 
-# drop table
-execute_ddl(cnx,"""
+## Task 4 - Create copy containing only countries
+
+```{python}
+execute_ddl(cnx, """
 DROP TABLE IF EXISTS wdi_country;
 """)
-``` 
+```
 
 ```{python}
-# create table (correct version)
 execute_ddl(cnx, """
 CREATE TABLE wdi_country AS
 SELECT *
@@ -129,454 +91,228 @@ FROM world_bank_data.wdi_country
 WHERE country_region <> ''
   AND country_income <> ''
   AND country_code NOT IN (
-    'WLD', 'ARB', 'CEB', 'CSS', 'EAS', 'EAP', 'ECA', 'EMU', 'EUU', 'FCS', 'HIC',
-    'LAC', 'LCN', 'LDC', 'LIC', 'LMC', 'MEA', 'MIC', 'MNA', 'NAC', 'OED', 'OSS',
-    'PRE', 'PSS', 'PST', 'SAS', 'SSA', 'SSF', 'UMC'
+    'WLD', 'ARB', 'CEB', 'CSS', 'EAS', 'EAP', 'ECA', 'EMU', 'EUU',
+    'FCS', 'HIC', 'LAC', 'LCN', 'LDC', 'LIC', 'LMC', 'MEA', 'MIC',
+    'MNA', 'NAC', 'OED', 'OSS', 'PRE', 'PSS', 'PST', 'SAS', 'SSA', 'SSF', 'UMC'
   );
 """)
 ```
 
 ```{python}
-# show number of records
 run_sql_and_return_html(cnx, """
 SELECT COUNT(*) AS "Number of Countries"
 FROM wdi_country;
 """)
-``` 
+```
 
-## Task 5
-
-According to the World Bank, in 2020 there were how many countries in the world?
+## Task 5 - How many countries?
 
 ```{python}
-## (skills: select, aggregate)
-
 run_sql_and_return_html(cnx, """
 SELECT COUNT(*) AS "2020 Country Count"
 FROM wdi_country;
 """)
-
-
 ```
 
-## Task 6
-
-What are all unique values of region in the wdi_country table?
+## Task 6 - Unique region values
 
 ```{python}
-## Let's investigate the country_region field.
-## What is the domain of the country_region field? That is,
-## what are the unique values found there?
-## (there are several possible ways to code this in SQL)
-## (skills: select, aggregate, order by)
-
 run_sql_and_return_html(cnx, """
 SELECT DISTINCT country_region
 FROM wdi_country
 ORDER BY country_region;
 """)
-
-
 ```
 
-## Task 7
-
-How many countries are in each region?
+## Task 7 - Number of countries per region
 
 ```{python}
-## How many countries are in each region?
-## (skills: select, aggregate, group by, order by)
-
 run_sql_and_return_html(cnx, """
-SELECT country_region AS Region, COUNT(*) AS "Country Count"
+SELECT country_region, COUNT(*) AS num_countries
 FROM wdi_country
 GROUP BY country_region
-ORDER BY "Country Count" DESC;
+ORDER BY num_countries DESC;
 """)
-
-
 ```
 
-## Task 8
-
-List the country full names and regions for all countries in north america.
+## Task 8 - North America countries
 
 ```{python}
-## List the country full names and regions for all countries in north america
-## (skills: select, where, order by)
-
 run_sql_and_return_html(cnx, """
 SELECT country_name, country_region
 FROM wdi_country
 WHERE LOWER(country_region) = 'north america'
 ORDER BY country_name;
 """)
-
-
 ```
 
-## Task 9
+## Task 9 - Where is Qatar?
 
 ```{python}
-## The last World Cup soccer tournament was hosted by Qatar.
-## What region contains Qatar?  List the region, country short name and full name
-## (skills: select, where)
-
 run_sql_and_return_html(cnx, """
 SELECT country_region, country_code, country_name
 FROM wdi_country
 WHERE LOWER(country_name) = 'qatar';
 """)
-
-
 ```
 
-## Task 10
+## Task 10 - Different abbreviations
 
 ```{python}
-## There are two abbreviation fields in the data country_abbr and country_wb_abbr.
-## List the country code, short name, abbr, wb_abbr and region for all the countries
-## where the abbr and wb_abbr are different.
-## (skills: select, where, order by)
-
 run_sql_and_return_html(cnx, """
 SELECT country_code, country_name, country_abbr, country_wb_abbr, country_region
 FROM wdi_country
 WHERE country_abbr <> country_wb_abbr
 ORDER BY country_name;
 """)
-
-
 ```
 
-## Task 11
+## Task 11 - List income categories
 
 ```{python}
-## Now, let's investigate the "income category" field.
-## List the income categories and the number of countries in each
-## income category in descending order of most countries to least.
-## (skills: select, aggregate, group by, order by)
-
 run_sql_and_return_html(cnx, """
-SELECT country_income, COUNT(*) AS num_countries
+SELECT country_income, COUNT(*)
 FROM wdi_country
 GROUP BY country_income
-ORDER BY num_countries DESC;
+ORDER BY COUNT(*) DESC;
 """)
-
-
 ```
 
-## Task 12
+## Task 12 - Find NULL income countries
 
 ```{python}
-## Mystery task.  Looking at the table from Task 11 (anything odd?) write the
-## next obvious query based on the results in the table.
-## At a minimum, your query should put country short name in the first column.
-## you will be scored on the number of records returned and the value(s) 
-## in the first column.
-
 run_sql_and_return_html(cnx, """
-SELECT country_name, country_code, country_region, country_income
+SELECT country_name
 FROM wdi_country
-WHERE country_income = ''
-ORDER BY country_name;
+WHERE country_income = '';
 """)
-
-
 ```
 
-## Task 13
+## Task 13 - Update Venezuela to High Income
 
 ```{python}
-## OK, this HAS to be an error. Let's make a assumption that the country 
-## in question, because they are oil-rich, are "high income".  
-## Write an update comment to correct the issue.
-## NOTE - if you get this wrong, all subsequent tables will be wrong!
-
 execute_ddl(cnx, """
 UPDATE wdi_country
 SET country_income = 'High income'
-WHERE country_code = 'LBY';
+WHERE country_code = 'VEN';
 """)
-
-
-
 ```
-```{python}
-## Now, display the country again to verify the change stuck!
 
+```{python}
 run_sql_and_return_html(cnx, """
-SELECT country_code, country_name, country_income
+SELECT country_name, country_income
 FROM wdi_country
-WHERE country_code = 'LBY';
+WHERE country_code = 'VEN';
 """)
-
-
 ```
 
-## Task 14
+## Task 14 - Region-Income pairs
 
 ```{python}
-## Write a single query that show the number of countries in each 
-## "Region"-"Income Group" pair.  The table should have 3 columns:
-## region, income group, and no.of.countries.
-## (skills: select, aggregate, group by, order by)
-
 run_sql_and_return_html(cnx, """
-SELECT
-  country_region AS Region,
-  country_income AS Income_Group,
-  COUNT(*) AS Num_Countries
+SELECT country_region, country_income, COUNT(*)
 FROM wdi_country
 GROUP BY country_region, country_income
 ORDER BY country_region, country_income;
 """)
-
-
 ```
 
-## Task 15
+## Task 15 - Pivot Region-Income Table
 
 ```{python}
-## Examine the result from task 14. It would be really cool to
-## present the results of this table in a 2-D form, with 
-## columns for each income category (high, upper middle, lower middle, low, other)
-## regions down the side, and the pair-wise count inside each cell.
-## Using CASE statements, DO IT!  BE SURE to include the countries without
-## an income category.
-
-## HINT - your query should return 6 columns: the region name, one
-## column for each of the income categories (e.g., High, Upper middle, etc.)
-## and a column for the row totals.
-## (skills: select, aggregate, group by, nested query)
-
 run_sql_and_return_html(cnx, """
 SELECT
-  country_region AS Region,
-  SUM(CASE WHEN country_income = 'High income' THEN 1 ELSE 0 END) AS High_Income,
-  SUM(CASE WHEN country_income = 'Upper middle income' THEN 1 ELSE 0 END) AS Upper_Middle_Income,
-  SUM(CASE WHEN country_income = 'Lower middle income' THEN 1 ELSE 0 END) AS Lower_Middle_Income,
-  SUM(CASE WHEN country_income = 'Low income' THEN 1 ELSE 0 END) AS Low_Income,
+  country_region,
+  SUM(CASE WHEN country_income = 'High income' THEN 1 ELSE 0 END) AS High_income,
+  SUM(CASE WHEN country_income = 'Upper middle income' THEN 1 ELSE 0 END) AS Upper_middle_income,
+  SUM(CASE WHEN country_income = 'Lower middle income' THEN 1 ELSE 0 END) AS Lower_middle_income,
+  SUM(CASE WHEN country_income = 'Low income' THEN 1 ELSE 0 END) AS Low_income,
   SUM(CASE WHEN country_income = '' THEN 1 ELSE 0 END) AS Other,
   COUNT(*) AS Total
 FROM wdi_country
 GROUP BY country_region
 ORDER BY country_region;
 """)
-
-
 ```
 
-## Task 16
+## Task 16 - Region with most low-income countries
 
 ```{python}
-## Wow! what a cool table!  It is very interesting to see where the money
-## sits around the world.  Using the general approach from Task 14 above
-## and write a query to return the single region with the most lower-income
-## countries.
-
-## Your query should return 3 columns, the number of 
-## low-income countries, the region name and the income group
-
-## PUT THE NUMBER FIRST! (use: count, region name, income group)
-## (skills: select, aggregate, group by, nested query, order by, limit)
-
 run_sql_and_return_html(cnx, """
-SELECT 
-  COUNT(*) AS Low_Income_Count,
-  country_region AS Region,
-  country_income AS Income_Group
+SELECT COUNT(*) AS Low_income_count, country_region, country_income
 FROM wdi_country
 WHERE country_income = 'Low income'
 GROUP BY country_region, country_income
-ORDER BY Low_Income_Count DESC
+ORDER BY Low_income_count DESC
 LIMIT 1;
 """)
-
-
 ```
 
-## Task 17
+## Task 17 - Countries similar to Marshall Islands
 
 ```{python}
-## Are you getting the hand of this? Good! We need to take a look at all
-## the countries in the same region and with the same income category as
-## the Marshall Islands.
-## For each country that matches, print their country code, short name,
-## region and income category, by order of their short name.  As a hint,
-## the country code for the Marshall Islands is MHL.
-## (skills: select, where, subquery)
-
 run_sql_and_return_html(cnx, """
 SELECT country_code, country_name, country_region, country_income
 FROM wdi_country
-WHERE country_region = (
-    SELECT country_region
-    FROM wdi_country
-    WHERE country_code = 'MHL'
-)
-AND country_income = (
-    SELECT country_income
-    FROM wdi_country
-    WHERE country_code = 'MHL'
-)
+WHERE country_region = (SELECT country_region FROM wdi_country WHERE country_code = 'MHL')
+  AND country_income = (SELECT country_income FROM wdi_country WHERE country_code = 'MHL')
 ORDER BY country_name;
 """)
-
-
 ```
 
-## Task 18
+## Task 18 - Missing region-income combinations
 
 ```{python}
-## OK - let's raise the heat in the kitchen! Review the output from task 14.
-## You'll see that some of the regions do not contain all of the income
-## levels.  For example, the Europe & Central Asia region does not have
-## any low income countries.
-##
-## CHALLENGE - using a SINGLE SQL statement, write a table that contains every
-## combination of region and income category (including the missing '') values!
-##
-## THEN add a WHERE clause to only show the values that were missing from
-## the original pairings!
-##
-## HINT - there should be AT MOST [# of regions]x[# of income cats] = 28
-## rows in your final table, and there are 22 rows returned in the query
-## in Task 14.  (FYI - I get 6 rows in my final table.)
-## (skills: select, where, subqueries, joins)
-
 run_sql_and_return_html(cnx, """
-SELECT 
-  r.region, 
-  i.income, 
-  COUNT(w.country_name) AS num_countries
-FROM 
-  (SELECT DISTINCT country_region AS region FROM wdi_country) r
-CROSS JOIN 
-  (SELECT DISTINCT country_income AS income FROM wdi_country) i
-LEFT JOIN 
-  wdi_country w
-  ON r.region = w.country_region AND i.income = w.country_income
-GROUP BY 
-  r.region, i.income
-HAVING 
-  num_countries = 0
-ORDER BY 
-  r.region, i.income;
+SELECT r.region, i.income
+FROM (SELECT DISTINCT country_region AS region FROM wdi_country) r
+CROSS JOIN (SELECT DISTINCT country_income AS income FROM wdi_country) i
+LEFT JOIN wdi_country w ON r.region = w.country_region AND i.income = w.country_income
+GROUP BY r.region, i.income
+HAVING COUNT(w.country_name) = 0
+ORDER BY r.region, i.income;
 """)
-
-
 ```
 
-## Task 19
+## Task 19 - Percent table
 
 ```{python}
-## Hot enough, yet?  Let's go for ghost-pepper HOT!  Now let's build some
-## percentage tables.  For example, across the entire sample, what
-## is the percentage of total countries in each income category?
-##
-## As a first step, build off the result from task 14 and create a table with
-## six columns (region, income cat, country count, sum of countries in region,
-## sum of countries by income and total sum countries).
-##
-## THEN, add a 7th column calculating the percent of total for each,
-## region-income pair.
-##
-## actually calculating percentages and print out a table will be a
-## slam dunk after this!
-## (skills: select, where, subqueries, joins, aggregate functions)
-
 run_sql_and_return_html(cnx, """
-SELECT 
-  country_region AS Region,
-  country_income AS Income_Group,
-  COUNT(*) AS Country_Count,
-  (SELECT COUNT(*) FROM wdi_country WHERE country_region = w.country_region) AS Region_Total,
-  (SELECT COUNT(*) FROM wdi_country WHERE country_income = w.country_income) AS Income_Total,
-  (SELECT COUNT(*) FROM wdi_country) AS Global_Total,
-  ROUND(100 * COUNT(*) / (SELECT COUNT(*) FROM wdi_country), 2) AS Percent_of_Total
+SELECT country_region, country_income, COUNT(*) AS country_count,
+       (SELECT COUNT(*) FROM wdi_country WHERE country_region = w.country_region) AS region_total,
+       (SELECT COUNT(*) FROM wdi_country WHERE country_income = w.country_income) AS income_total,
+       (SELECT COUNT(*) FROM wdi_country) AS global_total,
+       ROUND(100 * COUNT(*) / (SELECT COUNT(*) FROM wdi_country), 2) AS pct_global
 FROM wdi_country w
 GROUP BY country_region, country_income
-ORDER BY Percent_of_Total DESC;
+ORDER BY pct_global DESC;
 """)
-
-
-
 ```
 
-## Task 20
+## Task 20 - Percent pivot
 
 ```{python}
-## SLAM DUNK TIME!  Using the resulting table CTEs from Task 19,
-## print table similar to the table in Task 15, with Income group in the
-## columns, Region in the rows and Percent of total in each cell of the table.
-
 run_sql_and_return_html(cnx, """
-SELECT
-  country_region AS Region,
-  ROUND(100 * SUM(CASE WHEN country_income = 'High income' THEN 1 ELSE 0 END) / COUNT(*), 2) AS High_Income_Pct,
-  ROUND(100 * SUM(CASE WHEN country_income = 'Upper middle income' THEN 1 ELSE 0 END) / COUNT(*), 2) AS Upper_Middle_Income_Pct,
-  ROUND(100 * SUM(CASE WHEN country_income = 'Lower middle income' THEN 1 ELSE 0 END) / COUNT(*), 2) AS Lower_Middle_Income_Pct,
-  ROUND(100 * SUM(CASE WHEN country_income = 'Low income' THEN 1 ELSE 0 END) / COUNT(*), 2) AS Low_Income_Pct,
-  ROUND(100 * SUM(CASE WHEN country_income = '' THEN 1 ELSE 0 END) / COUNT(*), 2) AS Other_Pct
+SELECT country_region,
+  ROUND(100 * SUM(CASE WHEN country_income = 'High income' THEN 1 ELSE 0 END) / COUNT(*), 2) AS High_pct,
+  ROUND(100 * SUM(CASE WHEN country_income = 'Upper middle income' THEN 1 ELSE 0 END) / COUNT(*), 2) AS Upper_pct,
+  ROUND(100 * SUM(CASE WHEN country_income = 'Lower middle income' THEN 1 ELSE 0 END) / COUNT(*), 2) AS Lower_pct,
+  ROUND(100 * SUM(CASE WHEN country_income = 'Low income' THEN 1 ELSE 0 END) / COUNT(*), 2) AS Low_pct,
+  ROUND(100 * SUM(CASE WHEN country_income = '' THEN 1 ELSE 0 END) / COUNT(*), 2) AS Other_pct
 FROM wdi_country
 GROUP BY country_region
-ORDER BY Region;
+ORDER BY country_region;
 """)
-
 ```
 
-## Task 21
+## Task 21 - Overall income group percentages
 
 ```{python}
-## ANOTHER DUNK!  Using the resulting table CTEs from Task 19,
-## print a table listing the number, totals and percentage of countries
-## by income category.
-
-## (This is much simpler than task 20!)
-
 run_sql_and_return_html(cnx, """
-SELECT 
-  country_income AS Income_Group,
-  COUNT(*) AS Country_Count,
-  (SELECT COUNT(*) FROM wdi_country) AS Global_Total,
-  ROUND(100 * COUNT(*) / (SELECT COUNT(*) FROM wdi_country), 2) AS Percent_Global
+SELECT country_income, COUNT(*) AS country_count,
+       (SELECT COUNT(*) FROM wdi_country) AS global_total,
+       ROUND(100 * COUNT(*) / (SELECT COUNT(*) FROM wdi_country), 2) AS pct_global
 FROM wdi_country
 GROUP BY country_income
-ORDER BY Country_Count DESC;
+ORDER BY country_count DESC;
 """)
-
-
-```
-
-
-# Reflection
-
-1. Reflect on the SQL skills you used throughout these exercises. Which skills do you feel most confident in, and which do you think need more practice? How has this assignment helped you build or reinforce specific SQL competencies?
-
-Throughout this assignment, I strengthened my understanding of core SQL operations such as `SELECT`, `WHERE`, `GROUP BY`, `ORDER BY`, and aggregate functions like `COUNT`. I feel most confident in writing filter-based queries and grouping data to extract summaries. I also improved significantly in using `CASE` statements and creating pivot-style outputs (e.g., Task 15 and 20), which initially felt intimidating. However, I recognize that I still need more practice with multi-layered subqueries and `JOIN` logic involving derived tables, especially as seen in Task 18. This assignment reinforced my ability to break down a business problem into structured queries, and it helped me see how different SQL tools fit together in more complex analytical workflows.
-
-2. Problem-Solving Approach: Describe your approach to tackling the more complex tasks (like Tasks 18, 23, and 24). How did you break down these problems, and what steps did you take when you encountered challenges? How would you approach a similar problem differently in the future?
-
-For the more challenging tasks like Tasks 18 and 19, my approach was to first visualize the kind of table I needed to produce, and then identify what sub-aggregations or dimensions were required to reach it. I often started with a basic query, like a `GROUP BY`, and layered complexity from there. When I encountered missing combinations (Task 18), I thought back to cross joins and how they can be used to simulate all possible combinations. If something didn’t work, I would test each subquery in isolation to debug it. In the future, I’ll sketch out expected outputs before jumping into SQL—this helps reduce trial and error.
-
-
-3. Learning Takeaways: Consider the overall learning experience from this assignment. What were the biggest takeaways about working with SQL for data analysis and transformation? How do you think these skills will apply in real-world scenarios or future coursework?
-
-The biggest takeaway from this assignment was seeing SQL not just as a way to query data, but as a tool for reshaping and understanding the structure of information. I now better appreciate how businesses might analyze global datasets like World Bank indicators to discover patterns and make decisions. Knowing how to pivot, aggregate, and filter data efficiently is essential for anyone in analytics, software, or research roles. These skills will definitely help me in future coursework involving data science, backend systems, or business intelligence platforms—and they’re transferable to tools like Tableau or Python’s pandas library as well.
-
-
-# README
-
-A quality README is an important part of EVERY project. Using the Quarto *include* command we're including a copy of your README in the project report so that a human can evaluate it.
-
-Make sure that you edit the README so that it's explanatory!  Note that you don't need a readme within the *reports* folder for this assignment. We're only
-focused on the root *README.md*.
-
-[Here is some info](https://www.freecodecamp.org/news/how-to-write-a-good-readme-file/) on how to write a good README!
-
-::: {style="background:lightgray; margin-left:20px; border-top: 3px solid black; border-bottom: 3px solid black; padding-left:20px; padding-right:20px"}
-{{< include ../README.md >}}
-:::
-
