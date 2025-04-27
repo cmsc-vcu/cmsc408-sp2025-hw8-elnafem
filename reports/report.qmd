@@ -79,18 +79,15 @@ execute_ddl(cnx, """
 CREATE TABLE wdi_country AS
 SELECT *
 FROM world_bank_data.wdi_country
-WHERE NOT (
-    country_name IN ('World', 'High income', 'Upper middle income', 'Lower middle income', 'Low income')
-    OR country_region = ''
-    OR country_income = ''
-);
+WHERE income_group IS NOT NULL
+AND region IS NOT NULL
+AND NOT (country_name IN ('World', 'High income', 'Upper middle income', 'Lower middle income', 'Low income'));
 """)
 
 run_sql_and_return_html(cnx, """
 SELECT COUNT(*) AS "Number of Countries"
 FROM wdi_country;
 """)
-
 ```
 
 ## Task 5
